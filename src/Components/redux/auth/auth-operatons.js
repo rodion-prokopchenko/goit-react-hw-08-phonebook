@@ -14,9 +14,12 @@ const token = {
 
 // "credentials" - it's a data from our <form/>.
 const register = createAsyncThunk("auth/register", async (credentials) => {
+  console.log(credentials);
+
   try {
     const { data } = await axios.post("/users/signup", credentials);
     token.set(data.token);
+    console.log(data);
     return data;
   } catch (error) {
     return console.log(error.message);
@@ -63,10 +66,10 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-const operations = {
+const authOperations = {
   register,
   logOut,
   logIn,
   fetchCurrentUser,
 };
-export default operations;
+export default authOperations;

@@ -1,14 +1,15 @@
 import s from "./App.module.css";
-// import ContactPage from "./Components/ContactPage/ContactPage";
-
 import AppBar from "./Components/AppBar/AppBar";
 import { lazy, Suspense } from "react";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet } from "react-router-dom";
 import LoginForm from "./Components/LoginForm/LoginForm";
+import RegisterPage from "./Components/RegisterForm/RegisterForm";
+import ContactPage from "./Components/ContactPage/ContactPage";
+import PublicRoute from "./Components/PublicRoute/PublicRoute";
 
-const ContactPage = lazy(() => import("./Components/ContactPage/ContactPage"));
-const LoginPage = lazy(() => import("./Components/LoginForm/LoginForm"));
+// const ContactPage = lazy(() => import("./Components/ContactPage/ContactPage"));
+// const LoginPage = lazy(() => import("./Components/LoginForm/LoginForm"));
 
 export default function App() {
   return (
@@ -17,22 +18,34 @@ export default function App() {
       <Suspense>
         <Routes>
           <Route
-            path="/contact"
             element={
-              <PrivateRoute redirectTo="/login">
-                <ContactPage />
-              </PrivateRoute>
+              <>
+                <PrivateRoute redirectTo="/login" />
+              </>
             }
-          ></Route>
-          <Route path="/login" element={<LoginForm />}></Route>
-          <Route path="/register" element={<LoginForm />}></Route>
-
-          {/* <PrivateRoute path="/contact" redirectTo="/login">
-            {" "}
-            <ContactPage />
-          </PrivateRoute> */}
+          >
+            <Route path="/contact" element={<ContactPage />}></Route>
+          </Route>
+          <Route element={<PublicRoute restricted />}>
+            <Route path="/login" element={<LoginForm />}></Route>
+            <Route path="/register" element={<RegisterPage />}></Route>
+          </Route>
         </Routes>
       </Suspense>
     </div>
   );
+}
+{
+  /* <PrivateRoute
+            path="/contact"
+            redirectTo="/login"
+            element={<ContactPage />}
+          ></PrivateRoute> */
+}
+
+{
+  /* <PrivateRoute path="/contact" redirectTo="/login">
+            {" "}
+            <ContactPage />
+          </PrivateRoute> */
 }

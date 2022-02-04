@@ -2,6 +2,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
 
+const styles = {
+  form: {
+    width: 320,
+  },
+  label: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 15,
+  },
+};
+
 export default function LoginForm() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -30,8 +41,8 @@ export default function LoginForm() {
       <div>
         <h1>Страница логина</h1>
 
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <label>
+        <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
+          <label style={styles.label}>
             Почта
             <input
               type="email"
@@ -41,7 +52,7 @@ export default function LoginForm() {
             />
           </label>
 
-          <label>
+          <label style={styles.label}>
             Пароль
             <input
               type="password"

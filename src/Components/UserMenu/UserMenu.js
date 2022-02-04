@@ -7,7 +7,7 @@ export default function UserMenu() {
     <>
       <div>
         <h2>Привет,{userName}</h2>
-        <button type="submit">Logout </button>
+        <button type="submit">Logout</button>
       </div>
     </>
   );
