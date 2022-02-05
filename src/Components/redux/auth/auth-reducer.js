@@ -15,37 +15,37 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      alert("Успешно зарегистрировались");
+      console.log("Успешно зарегистрировались");
     },
-    [authOperations.register.pending](state, action) {
-      alert("Регистрируемся...");
+    [authOperations.register.pending](_, action) {
+      console.log("регистрация");
     },
     [authOperations.register.rejected](state, action) {
-      alert("что-то не так");
+      console.log("что-то не так");
     },
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      alert("Успешно зашли");
+      console.log("Успешно зашли");
     },
     [authOperations.logIn.pending](state, action) {
-      alert("Заходим...");
+      console.log("Заходим...");
     },
     [authOperations.logIn.rejected](state, action) {
-      alert("что-то не так");
+      console.log("что-то не так");
     },
     [authOperations.logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
-      alert("Успешно вышли");
+      console.log("Успешно вышли");
     },
     [authOperations.logOut.pending](state, action) {
-      alert("Выходим...");
+      console.log("Выходим...");
     },
     [authOperations.logOut.rejected](state, action) {
-      alert("что-то не так");
+      console.log("что-то не так");
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;

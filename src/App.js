@@ -13,7 +13,6 @@ import authOperations from "./Components/redux/auth/auth-operatons";
 
 export default function App() {
   const dispatch = useDispatch();
-  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -41,18 +40,4 @@ export default function App() {
       </Suspense>
     </div>
   );
-}
-{
-  /* <PrivateRoute
-            path="/contact"
-            redirectTo="/login"
-            element={<ContactPage />}
-          ></PrivateRoute> */
-}
-
-{
-  /* <PrivateRoute path="/contact" redirectTo="/login">
-            {" "}
-            <ContactPage />
-          </PrivateRoute> */
 }

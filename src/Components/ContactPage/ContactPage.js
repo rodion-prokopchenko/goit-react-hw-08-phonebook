@@ -12,8 +12,10 @@ import {
 
 export default function ContactPage() {
   const { data, isFetching } = useFetchContactQuery();
-  const filter = useSelector(getValueFilter);
   const [deleteContact] = useDeleteContactMutation();
+
+  const filter = useSelector(getValueFilter);
+
   const getVisibleContacts = (contacts) => {
     if (filter === "") return contacts;
     const normalizedFilter = filter.toLowerCase();

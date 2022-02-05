@@ -1,5 +1,4 @@
 import { combineReducers, createReducer } from "@reduxjs/toolkit";
-import react from "react";
 import {
   addContact,
   deleteContact,
