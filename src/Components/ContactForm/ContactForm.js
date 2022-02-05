@@ -1,14 +1,13 @@
 import react, { useState, useEffect } from "react";
-import shortid from "shortid";
 import s from "./ContactForm.module.css";
-import { useAddContactMutation } from "../API/contactAPI";
-
+import contactOperations from "../redux/contacts/contact-actions";
+import { useDispatch } from "react-redux";
 export default function ContactForm({ compairContacts }) {
   const [addContact, { isLoading }] = useAddContactMutation();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-
   const reset = () => {
     setName("");
     setNumber("");
@@ -33,7 +32,7 @@ export default function ContactForm({ compairContacts }) {
     }
     let newContact = { name: name, number: number };
     try {
-      await addContact(newContact);
+      await dispatch(contactOperations.addContact(newContact));
     } catch {
       console.log("не получилось добавить");
     }

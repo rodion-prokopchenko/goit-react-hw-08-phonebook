@@ -3,35 +3,36 @@ import ContactList from "../ContactList/ContactList";
 import Filter from "../Filter/Filter";
 
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilter } from "../redux/contacts/contact-actions";
-import { getValueFilter } from "../redux/contacts/contact-selectors";
+import { changeFilter } from "../redux/contacts/contact-actions(previous)";
 import {
-  useFetchContactQuery,
-  useDeleteContactMutation,
-} from "../API/contactAPI";
+  getValueFilter,
+  getContacts,
+} from "../redux/contacts/contact-selectors";
+import contactOperations from "../redux/contacts/contact-actions";
 
 export default function ContactPage() {
-  const { data, isFetching } = useFetchContactQuery();
-  const [deleteContact] = useDeleteContactMutation();
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  const deleteContact = dispatch(contactOperations.deleteContact);
+  const fetchContact = dispatch(contactOperations.getContact);
 
   const filter = useSelector(getValueFilter);
 
-  const getVisibleContacts = (contacts) => {
-    if (filter === "") return contacts;
+  const getVisibleContacts = (contact) => {
+    if (filter === "") return contact;
     const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(({ name }) =>
+    return contact.filter(({ name }) =>
       name.toLowerCase().includes(normalizedFilter)
     );
   };
-  const filterStore = getVisibleContacts(data);
+  const filterStore = getVisibleContacts(fetchContact);
 
-  const dispatch = useDispatch();
   const onChangeFilter = (e) => dispatch(changeFilter(e));
 
   function compairContacts(e) {
-    if (!data) return;
-    if (data.some(({ name }) => name === e)) {
+    if (!fetchContact) return;
+    if (fetchContact.some(({ name }) => name === e)) {
       return true;
     }
   }
@@ -41,11 +42,11 @@ export default function ContactPage() {
       <div>
         <ContactForm compairContacts={compairContacts} />
         <h2>Contacts</h2>
-        <Filter onChange={onChangeFilter} contacts={data} />
+        <Filter onChange={onChangeFilter} contacts={contacts} />
         <ContactList
           deleteContact={deleteContact}
           filteredContacts={filterStore}
-          isFetching={isFetching}
+          // isFetching={isFetching}
         />
       </div>
     </>

@@ -1,10 +1,9 @@
 import counterReducer from "./contacts/contact-reducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
+import contactsSlice from "./contacts/contact-reducer";
 import authSlice from "./auth/auth-reducer";
 import { configureStore } from "@reduxjs/toolkit";
-import { contactApi } from "../API/contactAPI";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 const authPersistConfig = {
@@ -16,13 +15,12 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authSlice),
-    contacts: counterReducer,
-    [contactApi.reducerPath]: contactApi.reducer,
+    contacts: contactsSlice,
   },
 
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({ serializableCheck: false }),
-    contactApi.middleware,
+    // contactsSlice.middleware,
   ],
   devTools: process.env.NODE_ENV === "development",
 });

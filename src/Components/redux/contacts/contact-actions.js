@@ -1,18 +1,57 @@
-import shortid from "shortid";
-import { createAction } from "@reduxjs/toolkit";
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const addContact = createAction("contact/add", (name, number) => ({
-  payload: {
-    id: shortid.generate(),
-    name: name,
-    number: number,
+axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
+
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
-}));
+  unset() {
+    axios.defaults.headers.common.Authorization = "";
+  },
+};
 
-const deleteContact = createAction("contact/delete");
+const getContact = createAsyncThunk(
+  "contact/getContact",
+  async (credentials) => {
+    console.log(credentials);
 
-const findByName = createAction("contact/filtered");
+    try {
+      const { data } = await axios.get("/contacts", credentials);
+      // token.set(data.token);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return console.log(error.message);
+    }
+  }
+);
 
-const changeFilter = createAction("filter/change");
+const addContact = createAsyncThunk(
+  "contact/addContact",
+  async (credentials) => {
+    try {
+      const { data } = await axios.post("/contacts", credentials);
 
-export { addContact, deleteContact, findByName, changeFilter };
+      return data;
+    } catch (error) {
+      return console.log(error.message);
+    }
+  }
+);
+
+const deleteContact = createAsyncThunk("contact/deleteContact", async (id) => {
+  try {
+    await axios.delete(` /contacts/${id}`);
+  } catch (error) {
+    return console.log(error.message);
+  }
+});
+
+const contactOperations = {
+  addContact,
+  deleteContact,
+  getContact,
+};
+export default contactOperations;
