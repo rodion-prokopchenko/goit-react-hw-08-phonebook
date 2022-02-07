@@ -22,7 +22,7 @@ export default function UserMenu() {
 
   const userEmail = useSelector(authSelectors.getEmail);
   const [showContacts, setShowContacts] = useState("false");
-  console.log(location);
+
   function changeShowContacts() {
     setShowContacts(!showContacts);
     // navigation(location="/");

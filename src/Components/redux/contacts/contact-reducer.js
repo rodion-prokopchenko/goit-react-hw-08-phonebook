@@ -3,6 +3,7 @@ import contactOperations from "./contact-actions";
 
 const initialState = {
   contacts: [],
+  isFetching: "done",
   filter: "",
 };
 
@@ -11,10 +12,12 @@ const contactsSlice = createSlice({
   initialState,
   extraReducers: {
     [contactOperations.getContact.fulfilled](state, action) {
-      state.contacts = action.payload.user;
-      console.log("Успешно зафетчено ");
+      state.contacts = action.payload;
+      state.isFetching = "done";
+      console.log("Успешно зафетчено");
     },
-    [contactOperations.getContact.pending](_, action) {
+    [contactOperations.getContact.pending](state, action) {
+      state.isFetching = "pending";
       console.log("фетчинг");
     },
     [contactOperations.getContact.rejected](_, action) {

@@ -3,12 +3,16 @@ import propTypes from "prop-types";
 import shortid from "shortid";
 import s from "./ContactList.module.css";
 
-export default function ContactList({ filteredContacts, deleteContact }) {
+export default function ContactList({
+  filteredContacts,
+  deleteContact,
+  isFetching,
+}) {
   return (
     <>
       <ul className={s.contactList}>
-        {/* {isFetching && <h1>Загружаю</h1>} */}
-        {/* {filteredContacts.length >= 1
+        {isFetching === "pending" && <h1>Загружаю</h1>}
+        {filteredContacts.length !== 0
           ? filteredContacts.map((contacts) => (
               <li
                 className={s.contactList__item}
@@ -31,7 +35,7 @@ export default function ContactList({ filteredContacts, deleteContact }) {
                 </button>
               </li>
             ))
-          : null} */}
+          : null}
       </ul>
     </>
   );

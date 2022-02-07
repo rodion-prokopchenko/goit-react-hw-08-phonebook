@@ -7,15 +7,17 @@ import { changeFilter } from "../redux/contacts/contact-actions(previous)";
 import {
   getValueFilter,
   getContacts,
+  getFetching,
 } from "../redux/contacts/contact-selectors";
 import contactOperations from "../redux/contacts/contact-actions";
 
 export default function ContactPage() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
+  const isFetching = useSelector(getFetching);
   const deleteContact = dispatch(contactOperations.deleteContact);
-  const fetchContact = dispatch(contactOperations.getContact);
-
+  const fetchContact = dispatch(contactOperations.getContact());
+  // const = ()
   const filter = useSelector(getValueFilter);
 
   const getVisibleContacts = (contact) => {
@@ -47,7 +49,7 @@ export default function ContactPage() {
         <ContactList
           deleteContact={deleteContact}
           filteredContacts={filterStore}
-          // isFetching={isFetching}
+          isFetching={isFetching}
         />
       </div>
     </>
