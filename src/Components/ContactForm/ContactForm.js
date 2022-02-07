@@ -2,8 +2,10 @@ import react, { useState, useEffect } from "react";
 import s from "./ContactForm.module.css";
 import contactOperations from "../redux/contacts/contact-actions";
 import { useDispatch } from "react-redux";
+
 export default function ContactForm({ compairContacts }) {
-  const [addContact, { isLoading }] = useAddContactMutation();
+  // const [addContact, { isLoading }] = useAddContactMutation();
+  // const addContact = dispatch(contactOperations.addContact);
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -32,7 +34,7 @@ export default function ContactForm({ compairContacts }) {
     }
     let newContact = { name: name, number: number };
     try {
-      await dispatch(contactOperations.addContact(newContact));
+      dispatch(contactOperations.addContact(newContact));
     } catch {
       console.log("не получилось добавить");
     }

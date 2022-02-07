@@ -21,11 +21,13 @@ const contactsSlice = createSlice({
       console.log("что-то не так с фетчингом");
     },
     [contactOperations.addContact.fulfilled](state, action) {
-      state.contacts = [...state.contacts, action.payload.user];
+      state.contacts = [...state.contacts, action.payload];
+      console.log(action.payload);
 
       console.log("Успешно добавилил");
     },
     [contactOperations.addContact.pending](state, action) {
+      console.log(action.payload);
       console.log("Добавляем...");
     },
     [contactOperations.addContact.rejected](state, action) {

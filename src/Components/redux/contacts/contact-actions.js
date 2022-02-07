@@ -33,7 +33,7 @@ const addContact = createAsyncThunk(
   async (credentials) => {
     try {
       const { data } = await axios.post("/contacts", credentials);
-
+      console.log(data);
       return data;
     } catch (error) {
       return console.log(error.message);

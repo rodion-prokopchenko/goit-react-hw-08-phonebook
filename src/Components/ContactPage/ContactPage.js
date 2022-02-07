@@ -27,11 +27,12 @@ export default function ContactPage() {
     );
   };
   const filterStore = getVisibleContacts(fetchContact);
+  console.log(dispatch(contactOperations.getContact));
 
   const onChangeFilter = (e) => dispatch(changeFilter(e));
 
   function compairContacts(e) {
-    if (!fetchContact) return;
+    if (fetchContact.length !== 0) return;
     if (fetchContact.some(({ name }) => name === e)) {
       return true;
     }
