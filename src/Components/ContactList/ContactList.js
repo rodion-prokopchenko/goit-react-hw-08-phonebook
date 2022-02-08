@@ -23,18 +23,48 @@ export default function ContactList({
                   if (e.target.nodeName !== "BUTTON") {
                     return;
                   }
-                  try {
-                    dispatch(
-                      contactOperations.deleteContact(e.currentTarget.id)
-                    );
-                  } catch {
-                    console.log("не получилось удалить");
+                  if (e.target.id === "delete") {
+                    try {
+                      dispatch(
+                        contactOperations.deleteContact(e.currentTarget.id)
+                      );
+                    } catch {
+                      console.log("не получилось удалить");
+                    }
+                  }
+                  if (e.target.id === "update") {
+                    // const updatedContact = {}
+                    const w = e.currentTarget;
+                    console.log(w.firstChild.textContent);
+                    console.log(w);
+
+                    // console.log(w.find("span"));
+
+                    // try {
+                    //   dispatch(
+                    //     contactOperations.updateContact(e.currentTarget.id)
+                    //   );
+                    // } catch {
+                    //   console.log("не получилось обновить");
+                    // }
                   }
                 }}
               >
-                {contacts.name}: {contacts.number}
-                <button type="button" className={s.contactList__button}>
+                <span id="name">{contacts.name}</span>:
+                <span id="number"> {contacts.number}</span>
+                <button
+                  type="button"
+                  id="delete"
+                  className={s.contactList__button}
+                >
                   Delete
+                </button>
+                <button
+                  type="button"
+                  id="update"
+                  className={s.contactList__button}
+                >
+                  Update
                 </button>
               </li>
             ))

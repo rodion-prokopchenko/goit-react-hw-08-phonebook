@@ -64,7 +64,11 @@ const contactsSlice = createSlice({
     [contactOperations.deleteContact.rejected](state, action) {
       console.log("что-то не так");
     },
-    [contactOperations.updateContact.fulfilled](state, action) {},
+    [contactOperations.updateContact.fulfilled](state, action) {
+      state.contacts.filter((contact) => contact.id === action.payload.id);
+
+      // return contact === action.payload;
+    },
   },
 });
 
