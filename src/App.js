@@ -1,6 +1,6 @@
 import s from "./App.module.css";
 import AppBar from "./Components/AppBar/AppBar";
-import { useEffect, Suspense } from "react";
+import react, { useEffect, Suspense, createContext } from "react";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import { Route, Routes } from "react-router-dom";
 import LoginForm from "./Components/LoginForm/LoginForm";
@@ -11,10 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 import authSelectors from "./Components/redux/auth/auth-selectors";
 import authOperations from "./Components/redux/auth/auth-operatons";
 import contactOperations from "./Components/redux/contacts/contact-actions";
+import Context from "./Components/context";
+import { inputForm } from "./Components/ContactForm/ContactForm";
 
 export default function App() {
   const dispatch = useDispatch();
-
+  function focusOnInputForm() {
+    inputForm.current.focus();
+    console.log("wqeeq");
+  }
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
     dispatch(contactOperations.getContact());
@@ -22,24 +27,26 @@ export default function App() {
 
   return (
     <div className={s.app}>
-      <AppBar path="/" />
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <Routes>
-          <Route
-            element={
-              <>
-                <PrivateRoute redirectTo="/login" />
-              </>
-            }
-          >
-            <Route path="/contact" element={<ContactPage />}></Route>
-          </Route>
-          <Route element={<PublicRoute restricted />}>
-            <Route path="/login" element={<LoginForm />}></Route>
-            <Route path="/register" element={<RegisterPage />}></Route>
-          </Route>
-        </Routes>
-      </Suspense>
+      <Context.Provider value={focusOnInputForm}>
+        <AppBar path="/" />
+        <Suspense fallback={<h2>Loading...</h2>}>
+          <Routes>
+            <Route
+              element={
+                <>
+                  <PrivateRoute redirectTo="/login" />
+                </>
+              }
+            >
+              <Route path="/contact" element={<ContactPage />}></Route>
+            </Route>
+            <Route element={<PublicRoute restricted />}>
+              <Route path="/login" element={<LoginForm />}></Route>
+              <Route path="/register" element={<RegisterPage />}></Route>
+            </Route>
+          </Routes>
+        </Suspense>
+      </Context.Provider>
     </div>
   );
 }

@@ -1,10 +1,11 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useEffect, useRef } from "react";
 import s from "./ContactForm.module.css";
 import contactOperations from "../redux/contacts/contact-actions";
 import { useDispatch } from "react-redux";
+import Context from "../context";
+export const inputForm = react.createRef();
 
 export default function ContactForm({ compairContacts }) {
-  // const [addContact, { isLoading }] = useAddContactMutation();
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -57,7 +58,6 @@ export default function ContactForm({ compairContacts }) {
         return;
     }
   };
-
   return (
     <>
       <form className={s.form}>
@@ -65,6 +65,7 @@ export default function ContactForm({ compairContacts }) {
           Name
         </label>
         <input
+          ref={inputForm}
           className={s.form__item}
           id="nameInput"
           type="text"

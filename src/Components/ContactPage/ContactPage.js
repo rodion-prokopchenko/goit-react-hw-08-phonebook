@@ -4,30 +4,18 @@ import Filter from "../Filter/Filter";
 
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilter } from "../redux/contacts/contact-actions(previous)";
-import {
-  getValueFilter,
-  getContacts,
-  getFetching,
-} from "../redux/contacts/contact-selectors";
+import contactSelectors from "../redux/contacts/contact-selectors";
 import contactOperations from "../redux/contacts/contact-actions";
 import { useEffect } from "react";
 
 export default function ContactPage() {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(getContacts);
-  const isFetching = useSelector(getFetching);
-  console.log(contacts);
-  console.log(isFetching);
+  const contacts = useSelector(contactSelectors.getContacts);
+  const isFetching = useSelector(contactSelectors.getFetching);
+  const filter = useSelector(contactSelectors.getValueFilter);
 
-  const filter = useSelector(getValueFilter);
-
-  useEffect(
-    () => dispatch(contactOperations.getContact()),
-    // console.log(contacts),
-    [dispatch]
-  );
-  console.log(contacts);
+  useEffect(() => dispatch(contactOperations.getContact()), [dispatch]);
 
   const getVisibleContacts = (contact) => {
     if (filter === "") return contact;
@@ -51,7 +39,10 @@ export default function ContactPage() {
   return (
     <>
       <div>
-        <ContactForm compairContacts={compairContacts} />
+        <ContactForm
+          compairContacts={compairContacts}
+          // refToForm={focusOnInputForm}
+        />
         <h2>Contacts</h2>
         <Filter onChange={onChangeFilter} contacts={contacts} />
         {isFetching === "pending" ? (

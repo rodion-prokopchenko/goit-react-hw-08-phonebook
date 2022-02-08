@@ -18,7 +18,6 @@ const getContact = createAsyncThunk(
   async (credentials) => {
     try {
       const { data } = await axios.get("/contacts", credentials);
-      console.log(data);
 
       return data;
     } catch (error) {
@@ -53,13 +52,37 @@ const deleteContact = createAsyncThunk(
   }
 );
 
-const updateContact = createAsyncThunk("contact/update", async (contactId) => {
-  try {
-    axios.patch(`contact/${contactId}`);
-  } catch (error) {
-    return console.error(error);
+//  axios
+//     .patch(`/tasks/${id}`, update)
+//     .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
+//     .catch(error => dispatch(toggleCompletedError(error.message)));
+// };
+
+const updateContact = createAsyncThunk(
+  "updateContact/sendUpdatedContact",
+  async (contactId, [updContact]) => {
+    try {
+      const { data } = await axios.patch(`contact/${contactId}`, {
+        name: updContact.name,
+        number: updContact.number,
+      });
+      console.log("👉 Returned data:", { data });
+      // return { data };
+
+      // const { data } = await axios
+      //   .patch(`contact/${contactId}`, {
+      //     name: contactId.name,
+      //     number: contactId.number,
+      //   })
+      //   .then((res) => res.data);
+      // return { data };
+    } catch (error) {
+      return console.error(error);
+    }
   }
-});
+);
+
+const sendUpdatedContact = createAction("updateContact/updating");
 
 const changeFilter = createAction("filter/change");
 
@@ -69,5 +92,6 @@ const contactOperations = {
   deleteContact,
   getContact,
   changeFilter,
+  sendUpdatedContact,
 };
 export default contactOperations;
