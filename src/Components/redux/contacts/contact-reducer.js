@@ -28,6 +28,7 @@ const contactsSlice = createSlice({
     },
     [contactOperations.addContact.fulfilled](state, action) {
       console.log(action);
+      // eslint-disable-next-line no-lone-blocks
       {
         action.payload
           ? state.contacts.push(action.payload)
@@ -63,6 +64,7 @@ const contactsSlice = createSlice({
     [contactOperations.deleteContact.rejected](state, action) {
       console.log("что-то не так");
     },
+    [contactOperations.updateContact.fulfilled](state, action) {},
   },
 });
 

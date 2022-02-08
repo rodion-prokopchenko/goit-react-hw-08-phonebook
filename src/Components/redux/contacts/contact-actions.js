@@ -53,10 +53,19 @@ const deleteContact = createAsyncThunk(
   }
 );
 
+const updateContact = createAsyncThunk("contact/update", async (contactId) => {
+  try {
+    axios.patch(`contact/${contactId}`);
+  } catch (error) {
+    return console.error(error);
+  }
+});
+
 const changeFilter = createAction("filter/change");
 
 const contactOperations = {
   addContact,
+  updateContact,
   deleteContact,
   getContact,
   changeFilter,
