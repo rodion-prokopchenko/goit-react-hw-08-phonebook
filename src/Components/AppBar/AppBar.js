@@ -8,9 +8,7 @@ import contactOperations from "../redux/contacts/contact-actions";
 export default function AppBar() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const dispatch = useDispatch();
-  const fetchContact = dispatch(contactOperations.getContact());
 
-  console.log(fetchContact);
   return (
     <>
       <button type="button" onClick={() => dispatch(authOperations.logOut())}>

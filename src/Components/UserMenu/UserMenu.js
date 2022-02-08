@@ -35,7 +35,7 @@ export default function UserMenu() {
         <Link to="/contact" onClick={changeShowContacts}>
           {showContacts ? "Показать контакты" : "Скрыть контакты"}
         </Link>
-        <h2>Привет, {userEmail}</h2>
+        <h2>Привет, {userEmail ? userEmail : null}</h2>
 
         <button
           style={styles.button}

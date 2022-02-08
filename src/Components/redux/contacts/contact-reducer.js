@@ -1,11 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { combineReducers, createSlice, createReducer } from "@reduxjs/toolkit";
 import contactOperations from "./contact-actions";
 
 const initialState = {
   contacts: [],
   isFetching: "done",
-  filter: "",
 };
+
+export const filter = createReducer("", {
+  [contactOperations.changeFilter]: (_, action) => action.payload,
+});
 
 const contactsSlice = createSlice({
   name: "contacts",
@@ -24,27 +27,38 @@ const contactsSlice = createSlice({
       console.log("что-то не так с фетчингом");
     },
     [contactOperations.addContact.fulfilled](state, action) {
-      state.contacts = [...state.contacts, action.payload];
-      console.log(action.payload);
+      console.log(action);
+      {
+        action.payload
+          ? state.contacts.push(action.payload)
+          : state.contacts.push(action.meta.arg);
+      }
+      state.isFetching = "done";
 
       console.log("Успешно добавилил");
     },
     [contactOperations.addContact.pending](state, action) {
-      console.log(action.payload);
+      console.log(action);
+
+      state.isFetching = "pending";
+
       console.log("Добавляем...");
     },
     [contactOperations.addContact.rejected](state, action) {
       console.log("что-то не так");
     },
     [contactOperations.deleteContact.fulfilled](state, action) {
-      state.contacts = state.contacts.filter((contacts) =>
-        contacts.name.toLowerCase().includes(action.payload)
+      state.contacts = state.contacts.filter(
+        (contacts) => contacts.id !== action.meta.arg
       );
+      state.isFetching = "done";
 
-      console.log("Успешно вышли");
+      console.log("Успешно удалили");
     },
     [contactOperations.deleteContact.pending](state, action) {
-      console.log("Выходим...");
+      state.isFetching = "pending";
+
+      console.log("Удаляем...");
     },
     [contactOperations.deleteContact.rejected](state, action) {
       console.log("что-то не так");
@@ -73,9 +87,4 @@ export default contactsSlice.reducer;
 
 // const filter = createReducer("", {
 //   [changeFilter]: (_, action) => action.payload,
-// });
-
-// export default combineReducers({
-//   items,
-//   filter,
 // });

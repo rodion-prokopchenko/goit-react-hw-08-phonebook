@@ -10,18 +10,20 @@ import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import { useDispatch, useSelector } from "react-redux";
 import authSelectors from "./Components/redux/auth/auth-selectors";
 import authOperations from "./Components/redux/auth/auth-operatons";
+import contactOperations from "./Components/redux/contacts/contact-actions";
 
 export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
+    dispatch(contactOperations.getContact());
   }, [dispatch]);
 
   return (
     <div className={s.app}>
       <AppBar path="/" />
-      <Suspense>
+      <Suspense fallback={<h2>Loading...</h2>}>
         <Routes>
           <Route
             element={

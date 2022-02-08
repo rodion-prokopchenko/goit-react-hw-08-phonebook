@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 
 export default function ContactForm({ compairContacts }) {
   // const [addContact, { isLoading }] = useAddContactMutation();
-  // const addContact = dispatch(contactOperations.addContact);
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -15,7 +14,7 @@ export default function ContactForm({ compairContacts }) {
     setNumber("");
   };
 
-  const onSumbitButton = async (e) => {
+  const onSumbitButton = (e) => {
     e.preventDefault();
     if (name === "" && number === "") {
       alert("Введите имя и номер");

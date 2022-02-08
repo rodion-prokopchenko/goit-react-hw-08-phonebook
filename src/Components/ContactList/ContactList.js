@@ -2,28 +2,31 @@ import react, { Component } from "react";
 import propTypes from "prop-types";
 import shortid from "shortid";
 import s from "./ContactList.module.css";
+import { useDispatch } from "react-redux";
+import contactOperations from "../redux/contacts/contact-actions";
 
 export default function ContactList({
   filteredContacts,
-  deleteContact,
-  isFetching,
+  // deleteContact,
 }) {
+  const dispatch = useDispatch();
   return (
     <>
       <ul className={s.contactList}>
-        {isFetching === "pending" && <h1>Загружаю</h1>}
         {filteredContacts.length !== 0
           ? filteredContacts.map((contacts) => (
               <li
                 className={s.contactList__item}
                 key={contacts.id}
                 id={contacts.id}
-                onClick={async (e) => {
+                onClick={(e) => {
                   if (e.target.nodeName !== "BUTTON") {
                     return;
                   }
                   try {
-                    await deleteContact(e.currentTarget.id);
+                    dispatch(
+                      contactOperations.deleteContact(e.currentTarget.id)
+                    );
                   } catch {
                     console.log("не получилось удалить");
                   }
