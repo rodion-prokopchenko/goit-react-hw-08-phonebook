@@ -11,9 +11,6 @@ export default function AppBar() {
 
   return (
     <>
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
-        ВЫЙДИ РАЗБИЙНИК
-      </button>
       <header>{isLoggedIn ? <UserMenu /> : <AuthNav />}</header>
     </>
   );

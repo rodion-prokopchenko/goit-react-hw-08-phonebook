@@ -4,8 +4,12 @@ import contactOperations from "../redux/contacts/contact-actions";
 import contactSelectors from "../redux/contacts/contact-selectors";
 import { useContext, useEffect, useRef, useState } from "react";
 import Context from "../context";
+import Button from "@mui/material/Button";
+import { TextField, Box } from "@mui/material";
+// import TextField from "@mui/material/TextField ";
 
 export default function ContactList({ filteredContacts }) {
+  const updatedContact = useSelector(contactSelectors.getContacts);
   const isUpdating = useSelector(contactSelectors.getUpdating);
   const dispatch = useDispatch();
 
@@ -38,6 +42,11 @@ export default function ContactList({ filteredContacts }) {
 
   const inputUpdatedName = useRef();
   const inputUpdatedNumber = useRef();
+  const getValue = (e) => {
+    console.log(e.currentTarget.first);
+  };
+
+  console.log("updatedContact:", updatedContact);
 
   useEffect(() => {}, [isUpdating]);
   return (
@@ -64,22 +73,25 @@ export default function ContactList({ filteredContacts }) {
                   }
                   if (e.target.id === "updateFinish") {
                     const updatedContact = {
-                      name: inputUpdatedName.current.value,
-                      number: inputUpdatedNumber.current.value,
+                      name: updatedName,
+                      number: updatedNumber,
                     };
+
                     const id = e.currentTarget.id;
-                    console.log(id);
+
                     try {
+                      console.log(
+                        "updatedContact in ContactList_TRY:",
+                        updatedContact
+                      );
                       dispatch(
-                        contactOperations.updateContact(id, updatedContact)
+                        contactOperations.updateContact({ id, updatedContact })
                       );
                     } catch {
                       console.log("не получилось обновить");
                     }
 
                     dispatch(contactOperations.sendUpdatedContact("false"));
-
-                    console.log(isUpdating);
                   }
                   if (e.target.id === "updateStart") {
                     setUpdatedName(inputName.current.innerText);
@@ -93,49 +105,54 @@ export default function ContactList({ filteredContacts }) {
                   <div>
                     <span ref={inputName}>{contacts.name}</span>:
                     <span ref={inputNumber}>{contacts.number}</span>
-                    <button
+                    <Button
+                      variant="contained"
                       type="button"
                       id="delete"
                       className={s.contactList__button}
                     >
                       Delete
-                    </button>
+                    </Button>
                   </div>
                 ) : (
                   <>
-                    <input
-                      onInput={onChange}
-                      ref={inputUpdatedName}
-                      placeholder={contacts.name}
-                      value={updatedName}
-                      name="updatedName"
-                    ></input>
-                    <input
-                      onInput={onChange}
-                      ref={inputUpdatedNumber}
-                      placeholder={contacts.number}
-                      value={updatedNumber}
-                      name="updatedNumber"
-                    ></input>
+                    <Box component="form" onSubmit={getValue}>
+                      <TextField
+                        onInput={onChange}
+                        ref={inputUpdatedName}
+                        placeholder={contacts.name}
+                        value={updatedName}
+                        name="updatedName"
+                      ></TextField>
+                      <TextField
+                        onInput={onChange}
+                        ref={inputUpdatedNumber}
+                        placeholder={contacts.number}
+                        value={updatedNumber}
+                        name="updatedNumber"
+                      ></TextField>
+                    </Box>
                   </>
                 )}
 
                 {isUpdating === "false" ? (
-                  <button
+                  <Button
+                    variant="contained"
                     type="button"
                     id="updateStart"
                     className={s.contactList__button}
                   >
                     Update
-                  </button>
+                  </Button>
                 ) : (
-                  <button
+                  <Button
+                    variant="contained"
                     type="button"
                     id="updateFinish"
                     className={s.contactList__button}
                   >
                     Send update
-                  </button>
+                  </Button>
                 )}
               </li>
             ))

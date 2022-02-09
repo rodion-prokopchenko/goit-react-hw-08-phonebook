@@ -1,5 +1,5 @@
 import { createSlice, createReducer } from "@reduxjs/toolkit";
-import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
+
 import contactOperations from "./contact-actions";
 
 const initialState = {
@@ -28,6 +28,7 @@ const contactsSlice = createSlice({
       console.log("что-то не так с фетчингом");
     },
 
+    // ADD
     [contactOperations.addContact.fulfilled](state, action) {
       console.log(action);
       // eslint-disable-next-line no-lone-blocks
@@ -51,6 +52,7 @@ const contactsSlice = createSlice({
       console.log("что-то не так");
     },
 
+    // DELETE
     [contactOperations.deleteContact.fulfilled](state, action) {
       state.contacts = state.contacts.filter(
         (contacts) => contacts.id !== action.meta.arg
@@ -68,13 +70,22 @@ const contactsSlice = createSlice({
       console.log("что-то не так");
     },
 
+    // UPDATE
     [contactOperations.updateContact.fulfilled](state, action) {
-      // state.contacts.filter((contact) => contact.id === action.payload.id);
-      state.contact = action.payload;
+      console.log("state.contact in Fulfilled:", state);
+
+      let updateContact = state.contacts.filter(
+        (contact) => contact.id !== action.payload.id
+      );
+      // updateContact = action.payload;
+      state.contacts = [...updateContact, action.payload];
+      console.log("updatedContact in Fulfilled:", updateContact);
+
+      console.log("action in Fulfilled:", action.payload.id);
     },
     [contactOperations.updateContact.pending](state, action) {
       // state.isUpdatingContact = false;
-      console.log(action);
+      console.log("updatedContact in Pending:", action);
     },
     [contactOperations.updateContact.rejected](state, action) {
       console.log(action);
@@ -84,17 +95,32 @@ const contactsSlice = createSlice({
     [contactOperations.sendUpdatedContact](state, action) {
       state.isUpdatingContact = action.payload;
     },
-
-    // [contactOperations.isUpdatingContact.fulfilled](_, action) {
-    //   console.log("что-то не так");
-    // },
-    // [contactOperations.isUpdatingContact.pending](state, action) {
-    //   console.log("что-то не так");
-    // },
-    // [contactOperations.isUpdatingContact.rejected](state, action) {
-    //   console.log("что-то не так");
-    // },
   },
 });
 
 export default contactsSlice.reducer;
+
+// [contactOperations.addContactUpdate.fulfilled](state, action) {
+//   // state.contacts.filter((contact) => contact.id === action.payload.id);
+//   console.log("updatedContact in Fulfilled:", action);
+
+//   state.contact = action.payload;
+// },
+// [contactOperations.addContactUpdate.pending](state, action) {
+//   // state.isUpdatingContact = false;
+//   console.log("updatedContact in Pending:", action);
+// },
+// [contactOperations.addContactUpdate.rejected](state, action) {
+//   console.log(action);
+//   console.log("что-то пошло не так");
+// },
+
+// [contactOperations.isUpdatingContact.fulfilled](_, action) {
+//   console.log("что-то не так");
+// },
+// [contactOperations.isUpdatingContact.pending](state, action) {
+//   console.log("что-то не так");
+// },
+// [contactOperations.isUpdatingContact.rejected](state, action) {
+//   console.log("что-то не так");
+// },

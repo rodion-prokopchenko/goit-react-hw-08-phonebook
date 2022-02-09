@@ -3,6 +3,8 @@ import s from "./ContactForm.module.css";
 import contactOperations from "../redux/contacts/contact-actions";
 import { useDispatch } from "react-redux";
 import Context from "../context";
+import { TextField, Box } from "@mui/material";
+
 export const inputForm = react.createRef();
 
 export default function ContactForm({ compairContacts }) {
@@ -60,11 +62,17 @@ export default function ContactForm({ compairContacts }) {
   };
   return (
     <>
-      <form className={s.form}>
+      <Box
+        className={s.form}
+        component="form"
+        sx={{
+          "& > :not(style)": { m: 1, width: "25ch" },
+        }}
+      >
         <label htmlFor={"nameInput"} className={s.form__item}>
           Name
         </label>
-        <input
+        <TextField
           ref={inputForm}
           className={s.form__item}
           id="nameInput"
@@ -79,7 +87,7 @@ export default function ContactForm({ compairContacts }) {
         <label htmlFor={"numberInput"} className={s.form__item}>
           Number
         </label>
-        <input
+        <TextField
           className={s.form__item}
           id="numberInput"
           type="tel"
@@ -93,7 +101,7 @@ export default function ContactForm({ compairContacts }) {
         <button type="button" onClick={onSumbitButton}>
           Добавить
         </button>
-      </form>
+      </Box>
     </>
   );
 }

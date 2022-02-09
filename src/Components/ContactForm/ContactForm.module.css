@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 200px;
   height: 150px;
+  margin-bottom: 200px;
 }
 .form__item {
   margin-bottom: 10px;
