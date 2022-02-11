@@ -8,16 +8,13 @@ import RegisterPage from "./Components/RegisterForm/RegisterForm";
 import ContactPage from "./Components/ContactPage/ContactPage";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import { useDispatch } from "react-redux";
-
 import authOperations from "./Components/redux/auth/auth-operatons";
-import contactOperations from "./Components/redux/contacts/contact-actions";
 
 export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-    // dispatch(contactOperations.getContact());
   }, [dispatch]);
 
   return (

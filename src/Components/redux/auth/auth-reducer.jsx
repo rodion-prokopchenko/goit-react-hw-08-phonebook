@@ -30,7 +30,6 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      console.log("Успешно зашли");
     },
     [authOperations.logIn.pending](state, action) {
       console.log("Заходим...");

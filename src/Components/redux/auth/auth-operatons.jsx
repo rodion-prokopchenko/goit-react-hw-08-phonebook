@@ -13,7 +13,7 @@ const token = {
   },
 };
 
-// "credentials" - it's a data from our <form/>.
+// REGISTER
 const register = createAsyncThunk("auth/register", async (credentials) => {
   console.log(credentials);
 
@@ -38,6 +38,7 @@ const logIn = createAsyncThunk("auth/login", async (credentials) => {
   }
 });
 
+// LOGOUT
 const logOut = createAsyncThunk("auth/logout", async () => {
   try {
     await axios.post("/users/logout");
@@ -47,6 +48,7 @@ const logOut = createAsyncThunk("auth/logout", async () => {
   }
 });
 
+// FETCHCURRENTUSER
 const fetchCurrentUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
@@ -54,7 +56,6 @@ const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      console.log("Токена нет, уходим из fetchCurrentUser");
       return thunkAPI.rejectWithValue();
     }
 

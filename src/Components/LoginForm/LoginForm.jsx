@@ -10,7 +10,6 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
 
   const handleChange = ({ target: { name, value } }) => {
-    console.log(name, ":", value);
     switch (name) {
       case "email":
         return setEmail(value);
@@ -23,7 +22,7 @@ export default function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+
     dispatch(authOperations.logIn({ email, password }));
     setEmail("");
     setPassword("");
