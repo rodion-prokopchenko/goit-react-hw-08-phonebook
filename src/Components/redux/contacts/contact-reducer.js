@@ -48,7 +48,7 @@ const contactsSlice = createSlice({
 
       console.log("Добавляем...");
     },
-    [contactOperations.addContact.rejected](state, action) {
+    [contactOperations.addContact.rejected](state, _) {
       console.log("что-то не так");
     },
 
@@ -61,30 +61,25 @@ const contactsSlice = createSlice({
 
       console.log("Успешно удалили");
     },
-    [contactOperations.deleteContact.pending](state, action) {
+    [contactOperations.deleteContact.pending](state, _) {
       state.isFetching = "pending";
 
       console.log("Удаляем...");
     },
-    [contactOperations.deleteContact.rejected](state, action) {
+    [contactOperations.deleteContact.rejected](state, _) {
       console.log("что-то не так");
     },
 
     // UPDATE
     [contactOperations.updateContact.fulfilled](state, action) {
-      console.log("state.contact in Fulfilled:", state);
+      state.contacts.splice(action.meta.arg.index, 1, action.payload);
 
-      let updateContact = state.contacts.filter(
-        (contact) => contact.id !== action.payload.id
-      );
-      // updateContact = action.payload;
-      state.contacts = [...updateContact, action.payload];
-      console.log("updatedContact in Fulfilled:", updateContact);
-
-      console.log("action in Fulfilled:", action.payload.id);
+      // console.log("action in Fulfilled:", action);
+      // console.log("updatedContact in Fulfilled:", updateContact);
+      // console.log("action.index in Fulfilled:", action.meta.arg.index);
+      // console.log("action.id in Fulfilled:", action.payload.id);
     },
     [contactOperations.updateContact.pending](state, action) {
-      // state.isUpdatingContact = false;
       console.log("updatedContact in Pending:", action);
     },
     [contactOperations.updateContact.rejected](state, action) {
@@ -99,28 +94,3 @@ const contactsSlice = createSlice({
 });
 
 export default contactsSlice.reducer;
-
-// [contactOperations.addContactUpdate.fulfilled](state, action) {
-//   // state.contacts.filter((contact) => contact.id === action.payload.id);
-//   console.log("updatedContact in Fulfilled:", action);
-
-//   state.contact = action.payload;
-// },
-// [contactOperations.addContactUpdate.pending](state, action) {
-//   // state.isUpdatingContact = false;
-//   console.log("updatedContact in Pending:", action);
-// },
-// [contactOperations.addContactUpdate.rejected](state, action) {
-//   console.log(action);
-//   console.log("что-то пошло не так");
-// },
-
-// [contactOperations.isUpdatingContact.fulfilled](_, action) {
-//   console.log("что-то не так");
-// },
-// [contactOperations.isUpdatingContact.pending](state, action) {
-//   console.log("что-то не так");
-// },
-// [contactOperations.isUpdatingContact.rejected](state, action) {
-//   console.log("что-то не так");
-// },

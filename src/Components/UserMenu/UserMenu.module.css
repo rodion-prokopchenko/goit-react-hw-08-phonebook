@@ -1,0 +1,14 @@
+.userMenu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.userMenu__button {
+  margin-bottom: 10px;
+}
+.userMenu__link {
+  color: #1976d2;
+  list-style: none;
+  text-decoration: none;
+}

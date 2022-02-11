@@ -1,0 +1,11 @@
+.form__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

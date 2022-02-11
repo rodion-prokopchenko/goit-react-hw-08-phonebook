@@ -1,34 +1,29 @@
 import s from "./App.module.css";
 import AppBar from "./Components/AppBar/AppBar";
-import react, { useEffect, Suspense, createContext } from "react";
+import { useEffect, Suspense } from "react";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import { Route, Routes } from "react-router-dom";
 import LoginForm from "./Components/LoginForm/LoginForm";
 import RegisterPage from "./Components/RegisterForm/RegisterForm";
 import ContactPage from "./Components/ContactPage/ContactPage";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
-import { useDispatch, useSelector } from "react-redux";
-import authSelectors from "./Components/redux/auth/auth-selectors";
+import { useDispatch } from "react-redux";
+
 import authOperations from "./Components/redux/auth/auth-operatons";
 import contactOperations from "./Components/redux/contacts/contact-actions";
-import Context from "./Components/context";
-import { inputForm } from "./Components/ContactForm/ContactForm";
 
 export default function App() {
   const dispatch = useDispatch();
-  function focusOnInputForm() {
-    inputForm.current.focus();
-    console.log("wqeeq");
-  }
+
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-    dispatch(contactOperations.getContact());
+    // dispatch(contactOperations.getContact());
   }, [dispatch]);
 
   return (
-    <div className={s.app}>
-      <Context.Provider value={focusOnInputForm}>
-        <AppBar path="/" />
+    <>
+      <AppBar path="/" />
+      <div className={s.app}>
         <Suspense fallback={<h2>Loading...</h2>}>
           <Routes>
             <Route
@@ -46,7 +41,7 @@ export default function App() {
             </Route>
           </Routes>
         </Suspense>
-      </Context.Provider>
-    </div>
+      </div>
+    </>
   );
 }

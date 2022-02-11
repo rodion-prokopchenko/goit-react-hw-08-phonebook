@@ -4,6 +4,7 @@ import contactOperations from "../redux/contacts/contact-actions";
 import { useDispatch } from "react-redux";
 import Context from "../context";
 import { TextField, Box } from "@mui/material";
+import Button from "@mui/material/Button";
 
 export const inputForm = react.createRef();
 
@@ -66,14 +67,15 @@ export default function ContactForm({ compairContacts }) {
         className={s.form}
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
+          "& > :not(style)": { m: 1 },
         }}
       >
-        <label htmlFor={"nameInput"} className={s.form__item}>
+        <label htmlFor={"nameInput"} className={s.form__text}>
           Name
         </label>
         <TextField
           ref={inputForm}
+          size="small"
           className={s.form__item}
           id="nameInput"
           type="text"
@@ -84,10 +86,12 @@ export default function ContactForm({ compairContacts }) {
           onInput={onChange}
           value={name}
         />
-        <label htmlFor={"numberInput"} className={s.form__item}>
+        <label htmlFor={"numberInput"} className={s.form__text}>
           Number
         </label>
         <TextField
+          width="20ch"
+          size="small"
           className={s.form__item}
           id="numberInput"
           type="tel"
@@ -98,9 +102,16 @@ export default function ContactForm({ compairContacts }) {
           onInput={onChange}
           value={number}
         />
-        <button type="button" onClick={onSumbitButton}>
+        <Button
+          sx={{
+            "& ": { width: "13ch" },
+          }}
+          type="button"
+          variant="contained"
+          onClick={onSumbitButton}
+        >
           Добавить
-        </button>
+        </Button>
       </Box>
     </>
   );

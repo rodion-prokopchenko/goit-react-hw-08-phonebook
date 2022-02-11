@@ -1,0 +1,21 @@
+.authNavigation {
+  display: flex;
+
+  justify-content: flex-end;
+}
+
+.authNavigation__link {
+  color: #1976d2;
+  list-style: none;
+  text-decoration: none;
+}
+.authNavigation__link:not(:last-child) {
+  margin-right: 15px;
+}
+
+.active {
+  background-color: #1976d2;
+  color: white;
+  list-style: none;
+  text-decoration: none;
+}

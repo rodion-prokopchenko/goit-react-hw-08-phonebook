@@ -1,13 +1,10 @@
 import AuthNav from "../AuthNav/AuthNav";
 import UserMenu from "../UserMenu/UserMenu";
 import authSelectors from "../redux/auth/auth-selectors";
-import { useSelector, useDispatch } from "react-redux";
-import authOperations from "../redux/auth/auth-operatons";
-import contactOperations from "../redux/contacts/contact-actions";
+import { useSelector } from "react-redux";
 
 export default function AppBar() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const dispatch = useDispatch();
 
   return (
     <>

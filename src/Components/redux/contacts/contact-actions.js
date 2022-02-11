@@ -52,76 +52,26 @@ const deleteContact = createAsyncThunk(
   }
 );
 
-// const addContactUpdate = createAsyncThunk(
-//   "contact/addContact",
-//   async (contactId, userData) => {
-//     try {
-//       const { data } = await axios.patch(`contacts/${contactId}`, {
-//         name: "NAME",
-//         number: "NUMBER",
-//       });
-//       console.log("data:", data);
-//       return data;
-//     } catch (error) {
-//       return console.log(error.message);
-//     }
-//   }
-// );
-
-//  axios
-//     .patch(`/tasks/${id}`, update)
-//     .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
-//     .catch(error => dispatch(toggleCompletedError(error.message)));
-// };
-
 const updateContact = createAsyncThunk(
   "updateContact/sendUpdatedContact",
-  async ({ id, updatedContact }) => {
+  async ({ id, updatedContact, index }) => {
     try {
-      console.log("id в функцие при отправке:", id);
-      console.log("updateContact в функцие при отправке:", updatedContact);
+      console.log("👉 id в функцие при отправке:", id);
+      console.log("👉 updateContact в функцие при отправке:", updatedContact);
+      console.log("👉 index в функцие при отправке:", index);
 
-      const { data } = await axios.patch(`contacts/${id}`, updatedContact);
+      const { data } = await axios.patch(
+        `contacts/${id}`,
+        updatedContact,
+        index
+      );
       console.log("👉 Returned data:", data);
       return data;
-
-      // const { data } = await axios
-      //   .patch(`contact/${contactId}`, {
-      //     name: contactId.name,
-      //     number: contactId.number,
-      //   })
-      //   .then((res) => res.data);
-      // return { data };
     } catch (error) {
       return console.error(error);
     }
   }
 );
-
-// const updateContact = createAsyncThunk(
-//   "updateContact/sendUpdatedContact",
-//   async (userData) => {
-//     try {
-//       console.log("contactId+updContact в функцие при отправке:", userData);
-//       const { data } = await axios.patch(`contacts/${userData.id}`, {
-//         name: userData.updateContact.name,
-//         number: userData.updateContact.number,
-//       });
-//       console.log("👉 Returned data:", { data });
-//       // return { data };
-
-//       // const { data } = await axios
-//       //   .patch(`contact/${contactId}`, {
-//       //     name: contactId.name,
-//       //     number: contactId.number,
-//       //   })
-//       //   .then((res) => res.data);
-//       // return { data };
-//     } catch (error) {
-//       return console.error(error);
-//     }
-//   }
-// );
 
 const sendUpdatedContact = createAction("updateContact/updating");
 
@@ -134,6 +84,5 @@ const contactOperations = {
   getContact,
   changeFilter,
   sendUpdatedContact,
-  // addContactUpdate,
 };
 export default contactOperations;

@@ -3,7 +3,16 @@
   flex-direction: column;
   align-items: flex-start;
 }
+.contactList__form {
+  margin-right: 10px;
+}
+.contactList__label {
+  margin-top: 10px;
+}
 
+.contactList__item {
+  display: flex;
+}
 .contactList__item:not(:last-child) {
   margin-bottom: 10px;
 }

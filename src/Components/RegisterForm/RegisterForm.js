@@ -1,17 +1,9 @@
+import { Button, TextField } from "@mui/material";
+import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: "flex",
-    flexDirection: "column",
-    marginBottom: 15,
-  },
-};
+import s from "./RegisterForm.module.css";
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -44,34 +36,59 @@ export default function RegisterPage() {
     <div>
       <h1>Страница регистрации</h1>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
+      <Box onSubmit={handleSubmit} className={s.form__box} autoComplete="off">
+        <label className={s.form__label}>
           Имя
-          <input type="text" name="name" value={name} onChange={handleChange} />
+          <TextField
+            type="text"
+            name="name"
+            size="small"
+            value={name}
+            onChange={handleChange}
+            sx={{
+              "& ": { mb: 1, mt: 1 },
+            }}
+          />
         </label>
 
-        <label style={styles.label}>
+        <label className={s.form__label}>
           Почта
-          <input
+          <TextField
             type="email"
             name="email"
+            size="small"
             value={email}
             onChange={handleChange}
+            sx={{
+              "& ": { mb: 1, mt: 1 },
+            }}
           />
         </label>
 
-        <label style={styles.label}>
+        <label className={s.form__label}>
           Пароль
-          <input
+          <TextField
             type="password"
             name="password"
+            size="small"
             value={password}
             onChange={handleChange}
+            sx={{
+              "& ": { mt: 1 },
+            }}
           />
         </label>
 
-        <button type="submit">Зарегистрироваться</button>
-      </form>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            "& ": { mt: 2, width: "30ch" },
+          }}
+        >
+          Зарегистрироваться
+        </Button>
+      </Box>
     </div>
   );
 }

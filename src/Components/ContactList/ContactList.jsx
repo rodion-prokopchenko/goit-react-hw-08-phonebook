@@ -1,15 +1,14 @@
-import s from "./ContactList.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import contactOperations from "../redux/contacts/contact-actions";
 import contactSelectors from "../redux/contacts/contact-selectors";
-import { useContext, useEffect, useRef, useState } from "react";
-import Context from "../context";
+import { useEffect, useRef, useState } from "react";
+
 import Button from "@mui/material/Button";
 import { TextField, Box } from "@mui/material";
-// import TextField from "@mui/material/TextField ";
+import s from "./ContactList.module.css";
 
 export default function ContactList({ filteredContacts }) {
-  const updatedContact = useSelector(contactSelectors.getContacts);
+  const Contacts = useSelector(contactSelectors.getContacts);
   const isUpdating = useSelector(contactSelectors.getUpdating);
   const dispatch = useDispatch();
 
@@ -46,8 +45,6 @@ export default function ContactList({ filteredContacts }) {
     console.log(e.currentTarget.first);
   };
 
-  console.log("updatedContact:", updatedContact);
-
   useEffect(() => {}, [isUpdating]);
   return (
     <>
@@ -78,14 +75,21 @@ export default function ContactList({ filteredContacts }) {
                     };
 
                     const id = e.currentTarget.id;
+                    console.log(Contacts);
+                    const index = Contacts.findIndex((element, index) => {
+                      if (element.id === id) {
+                        return true;
+                      }
+                    });
 
+                    console.log(index);
                     try {
-                      console.log(
-                        "updatedContact in ContactList_TRY:",
-                        updatedContact
-                      );
                       dispatch(
-                        contactOperations.updateContact({ id, updatedContact })
+                        contactOperations.updateContact({
+                          id,
+                          updatedContact,
+                          index,
+                        })
                       );
                     } catch {
                       console.log("не получилось обновить");
@@ -94,6 +98,9 @@ export default function ContactList({ filteredContacts }) {
                     dispatch(contactOperations.sendUpdatedContact("false"));
                   }
                   if (e.target.id === "updateStart") {
+                    console.log(inputName.current);
+                    console.log(inputNumber.current);
+
                     setUpdatedName(inputName.current.innerText);
                     setUpdatedNumber(inputNumber.current.innerText);
 
@@ -102,7 +109,7 @@ export default function ContactList({ filteredContacts }) {
                 }}
               >
                 {isUpdating === "false" ? (
-                  <div>
+                  <div className={s.contactList__form}>
                     <span ref={inputName}>{contacts.name}</span>:
                     <span ref={inputNumber}>{contacts.number}</span>
                     <Button
@@ -116,8 +123,16 @@ export default function ContactList({ filteredContacts }) {
                   </div>
                 ) : (
                   <>
-                    <Box component="form" onSubmit={getValue}>
+                    <Box
+                      component="form"
+                      onSubmit={getValue}
+                      className={s.contactList__form}
+                    >
                       <TextField
+                        sx={{
+                          "& ": { mr: 1 },
+                        }}
+                        size="small"
                         onInput={onChange}
                         ref={inputUpdatedName}
                         placeholder={contacts.name}
@@ -125,6 +140,7 @@ export default function ContactList({ filteredContacts }) {
                         name="updatedName"
                       ></TextField>
                       <TextField
+                        size="small"
                         onInput={onChange}
                         ref={inputUpdatedNumber}
                         placeholder={contacts.number}
@@ -140,6 +156,7 @@ export default function ContactList({ filteredContacts }) {
                     variant="contained"
                     type="button"
                     id="updateStart"
+                    size="small"
                     className={s.contactList__button}
                   >
                     Update
@@ -149,6 +166,7 @@ export default function ContactList({ filteredContacts }) {
                     variant="contained"
                     type="button"
                     id="updateFinish"
+                    size="small"
                     className={s.contactList__button}
                   >
                     Send update
