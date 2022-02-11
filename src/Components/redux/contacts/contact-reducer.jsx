@@ -30,8 +30,6 @@ const contactsSlice = createSlice({
 
     // ADD
     [contactOperations.addContact.fulfilled](state, action) {
-      console.log(action);
-      // eslint-disable-next-line no-lone-blocks
       {
         action.payload
           ? state.contacts.push(action.payload)
@@ -42,8 +40,6 @@ const contactsSlice = createSlice({
       console.log("Успешно добавилил");
     },
     [contactOperations.addContact.pending](state, action) {
-      console.log(action);
-
       state.isFetching = "pending";
 
       console.log("Добавляем...");
@@ -63,7 +59,6 @@ const contactsSlice = createSlice({
     },
     [contactOperations.deleteContact.pending](state, _) {
       state.isFetching = "pending";
-
       console.log("Удаляем...");
     },
     [contactOperations.deleteContact.rejected](state, _) {
@@ -73,17 +68,13 @@ const contactsSlice = createSlice({
     // UPDATE
     [contactOperations.updateContact.fulfilled](state, action) {
       state.contacts.splice(action.meta.arg.index, 1, action.payload);
-
-      // console.log("action in Fulfilled:", action);
-      // console.log("updatedContact in Fulfilled:", updateContact);
-      // console.log("action.index in Fulfilled:", action.meta.arg.index);
-      // console.log("action.id in Fulfilled:", action.payload.id);
+      state.isFetching = "done";
     },
     [contactOperations.updateContact.pending](state, action) {
-      console.log("updatedContact in Pending:", action);
+      console.log("обновляем контакт");
+      state.isFetching = "pending";
     },
     [contactOperations.updateContact.rejected](state, action) {
-      console.log(action);
       console.log("что-то пошло не так");
     },
 

@@ -3,16 +3,7 @@ import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
 
-const token = {
-  set(token) {
-    axios.defaults.headers.Authorization = `Bearer ${token}`;
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.Authorization = "";
-  },
-};
-
+// GETCONTACT
 const getContact = createAsyncThunk(
   "contact/getContact",
   async (credentials) => {
@@ -26,6 +17,7 @@ const getContact = createAsyncThunk(
   }
 );
 
+// ADDCONTACT
 const addContact = createAsyncThunk(
   "contact/addContact",
   async (credentials) => {
@@ -41,6 +33,7 @@ const addContact = createAsyncThunk(
   }
 );
 
+// DELETECONTACT
 const deleteContact = createAsyncThunk(
   "contact/deleteContact",
   async (contactId) => {
@@ -52,20 +45,17 @@ const deleteContact = createAsyncThunk(
   }
 );
 
+// UPDATECONTACT
 const updateContact = createAsyncThunk(
   "updateContact/sendUpdatedContact",
   async ({ id, updatedContact, index }) => {
     try {
-      console.log("👉 id в функцие при отправке:", id);
-      console.log("👉 updateContact в функцие при отправке:", updatedContact);
-      console.log("👉 index в функцие при отправке:", index);
-
       const { data } = await axios.patch(
         `contacts/${id}`,
         updatedContact,
         index
       );
-      console.log("👉 Returned data:", data);
+
       return data;
     } catch (error) {
       return console.error(error);
@@ -73,8 +63,10 @@ const updateContact = createAsyncThunk(
   }
 );
 
+// SENDUPDATECONTACT
 const sendUpdatedContact = createAction("updateContact/updating");
 
+// CHANGEFILTER
 const changeFilter = createAction("filter/change");
 
 const contactOperations = {

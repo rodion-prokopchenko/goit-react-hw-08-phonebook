@@ -11,6 +11,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   extraReducers: {
+    // REGISTER
     [authOperations.register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
@@ -23,6 +24,8 @@ const authSlice = createSlice({
     [authOperations.register.rejected](state, action) {
       console.log("что-то не так");
     },
+
+    // LOGIN
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
@@ -35,6 +38,8 @@ const authSlice = createSlice({
     [authOperations.logIn.rejected](state, action) {
       console.log("что-то не так");
     },
+
+    // LOGOUT
     [authOperations.logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
       state.token = null;
@@ -47,6 +52,8 @@ const authSlice = createSlice({
     [authOperations.logOut.rejected](state, action) {
       console.log("что-то не так");
     },
+
+    // FETCHCURRENTUSER
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;

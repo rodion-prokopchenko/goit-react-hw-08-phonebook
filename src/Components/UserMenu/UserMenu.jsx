@@ -9,6 +9,7 @@ import s from "./UserMenu.module.css";
 
 export default function UserMenu() {
   const dispatch = useDispatch();
+
   const userEmail = useSelector(authSelectors.getEmail);
   const [showContacts, setShowContacts] = useState("false");
 

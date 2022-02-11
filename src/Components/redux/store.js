@@ -1,4 +1,3 @@
-import counterReducer from "./contacts/contact-reducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import contactsSlice, { filter } from "./contacts/contact-reducer";
@@ -21,7 +20,6 @@ export const store = configureStore({
 
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({ serializableCheck: false }),
-    // contactsSlice.middleware,
   ],
   devTools: process.env.NODE_ENV === "development",
 });

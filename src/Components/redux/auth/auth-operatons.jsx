@@ -27,6 +27,7 @@ const register = createAsyncThunk("auth/register", async (credentials) => {
   }
 });
 
+// LOGIN
 const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/users/login", credentials);

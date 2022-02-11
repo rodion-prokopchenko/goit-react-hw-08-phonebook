@@ -1,7 +1,6 @@
 import ContactForm from "../ContactForm/ContactForm";
 import ContactList from "../ContactList/ContactList";
 import Filter from "../Filter/Filter";
-
 import { useDispatch, useSelector } from "react-redux";
 import contactSelectors from "../redux/contacts/contact-selectors";
 import contactOperations from "../redux/contacts/contact-actions";
@@ -27,8 +26,6 @@ export default function ContactPage() {
   };
   const filterStore = getVisibleContacts(contacts);
 
-  const onChangeFilter = (e) => dispatch(contactOperations.changeFilter(e));
-
   function compairContacts(e) {
     if (contacts.length === 0) return;
     if (contacts.some(({ name }) => name === e)) {
@@ -41,7 +38,7 @@ export default function ContactPage() {
       <div className={s.contactPage}>
         <ContactForm compairContacts={compairContacts} />
 
-        <Filter onChange={onChangeFilter} contacts={contacts} />
+        <Filter />
         {isFetching === "pending" ? (
           <h2>Loading...</h2>
         ) : (

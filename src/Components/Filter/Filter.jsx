@@ -1,11 +1,13 @@
-import propTypes from "prop-types";
 import { TextField, Box } from "@mui/material";
 import s from "./Filter.module.css";
+import { useDispatch } from "react-redux";
+import contactOperations from "../redux/contacts/contact-actions";
 
-const Filter = ({ onChange }) => {
-  const a = (e) => {
-    onChange(e.target.value);
-  };
+const Filter = () => {
+  const dispatch = useDispatch();
+
+  const onChangeFilter = (e) =>
+    dispatch(contactOperations.changeFilter(e.target.value));
 
   return (
     <>
@@ -17,7 +19,7 @@ const Filter = ({ onChange }) => {
           <TextField
             type="text"
             size="small"
-            onInput={a}
+            onInput={onChangeFilter}
             sx={{
               "& ": { width: "20ch", mt: 1 },
             }}
@@ -27,10 +29,6 @@ const Filter = ({ onChange }) => {
       </Box>
     </>
   );
-};
-
-Filter.propTypes = {
-  value: propTypes.string,
 };
 
 export default Filter;
