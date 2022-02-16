@@ -39,11 +39,11 @@ export default function ContactList({ filteredContacts }) {
   const inputName = useRef();
   const inputNumber = useRef();
 
-  const inputUpdatedName = useRef();
-  const inputUpdatedNumber = useRef();
-  const getValue = (e) => {
-    console.log(e.currentTarget.first);
-  };
+  // const inputUpdatedName = useRef();
+  // const inputUpdatedNumber = useRef();
+  // const getValue = (e) => {
+  //   console.log(e.currentTarget);
+  // };
 
   useEffect(() => {}, [isUpdating]);
   return (
@@ -117,61 +117,24 @@ export default function ContactList({ filteredContacts }) {
                       type="button"
                       id="delete"
                       className={s.contactList__button}
+                      size="small"
+                      sx={{
+                        "& ": { ml: 1, mr: 1 },
+                      }}
                     >
                       Delete
                     </Button>
-                  </div>
-                ) : (
-                  <>
-                    <Box
-                      component="form"
-                      onSubmit={getValue}
-                      className={s.contactList__form}
+                    <Button
+                      variant="contained"
+                      type="button"
+                      id="updateStart"
+                      size="small"
+                      className={s.contactList__button}
                     >
-                      <TextField
-                        sx={{
-                          "& ": { mr: 1 },
-                        }}
-                        size="small"
-                        onInput={onChange}
-                        ref={inputUpdatedName}
-                        placeholder={contacts.name}
-                        value={updatedName}
-                        name="updatedName"
-                      ></TextField>
-                      <TextField
-                        size="small"
-                        onInput={onChange}
-                        ref={inputUpdatedNumber}
-                        placeholder={contacts.number}
-                        value={updatedNumber}
-                        name="updatedNumber"
-                      ></TextField>
-                    </Box>
-                  </>
-                )}
-
-                {isUpdating === "false" ? (
-                  <Button
-                    variant="contained"
-                    type="button"
-                    id="updateStart"
-                    size="small"
-                    className={s.contactList__button}
-                  >
-                    Update
-                  </Button>
-                ) : (
-                  <Button
-                    variant="contained"
-                    type="button"
-                    id="updateFinish"
-                    size="small"
-                    className={s.contactList__button}
-                  >
-                    Send update
-                  </Button>
-                )}
+                      Update
+                    </Button>
+                  </div>
+                ) : null}
               </li>
             ))
           : null}
@@ -179,3 +142,71 @@ export default function ContactList({ filteredContacts }) {
     </>
   );
 }
+
+// {
+// isUpdating === "false" ? (
+//   <div className={s.contactList__form}>
+//     <span ref={inputName}>{contacts.name}</span>:
+//     <span ref={inputNumber}>{contacts.number}</span>
+//     <Button
+//       variant="contained"
+//       type="button"
+//       id="delete"
+//       className={s.contactList__button}
+//       sx={{
+//         "& ": { ml: 1 },
+//       }}
+//     >
+//       Delete
+//     </Button>
+//   </div>
+// ) : (
+//     <>
+//       <Box component="form" onSubmit={getValue} className={s.contactList__form}>
+//         <TextField
+//           sx={{
+//             "& ": { mr: 1 },
+//           }}
+//           size="small"
+//           onInput={onChange}
+//           ref={inputUpdatedName}
+//           placeholder={contacts.name}
+//           value={updatedName}
+//           name="updatedName"
+//         ></TextField>
+//         <TextField
+//           size="small"
+//           onInput={onChange}
+//           ref={inputUpdatedNumber}
+//           placeholder={contacts.number}
+//           value={updatedNumber}
+//           name="updatedNumber"
+//         ></TextField>
+//       </Box>
+//     </>
+//   );
+// }
+
+// {
+//   isUpdating === "false" ? (
+// <Button
+//   variant="contained"
+//   type="button"
+//   id="updateStart"
+//   size="small"
+//   className={s.contactList__button}
+// >
+//   Update
+// </Button>
+//   ) : (
+//     <Button
+//       variant="contained"
+//       type="button"
+//       id="updateFinish"
+//       size="small"
+//       className={s.contactList__button}
+//     >
+//       Send update
+//     </Button>
+//   );
+// }
