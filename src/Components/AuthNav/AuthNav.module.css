@@ -5,6 +5,7 @@
 }
 
 .authNavigation__link {
+  font-size: 200%;
   color: #1976d2;
   list-style: none;
   text-decoration: none;

@@ -5,8 +5,6 @@ import contactOperations from "./contact-actions";
 const initialState = {
   contacts: [],
   isFetching: "done",
-  isUpdatingContact: "false",
-  isSendingContact: "false",
 };
 
 export const filter = createReducer("", {
@@ -70,16 +68,12 @@ const contactsSlice = createSlice({
       state.contacts.splice(action.meta.arg.index, 1, action.payload);
       state.isFetching = "done";
     },
-    [contactOperations.updateContact.pending](state, action) {
+    [contactOperations.updateContact.pending](state, _) {
       console.log("обновляем контакт");
       state.isFetching = "pending";
     },
-    [contactOperations.updateContact.rejected](state, action) {
+    [contactOperations.updateContact.rejected](state, _) {
       console.log("что-то пошло не так");
-    },
-
-    [contactOperations.sendUpdatedContact](state, action) {
-      state.isUpdatingContact = action.payload;
     },
   },
 });
