@@ -4,7 +4,7 @@ import contactSelectors from "../redux/contacts/contact-selectors";
 import { useEffect, useRef, useState } from "react";
 import ModalWindow from "../Modal/Modal";
 
-import Button from "@mui/material/Button";
+import ContactListItem from "../ContactListItem/ContactListItem";
 import s from "./ContactList.module.css";
 
 export default function ContactList({ filteredContacts }) {
@@ -32,8 +32,6 @@ export default function ContactList({ filteredContacts }) {
     } catch {
       console.log("не получилось обновить");
     }
-
-    dispatch(contactOperations.sendUpdatedContact("false"));
   }
 
   const toggleModal = (id) => {
@@ -41,59 +39,16 @@ export default function ContactList({ filteredContacts }) {
     setShowModal(!showModal);
   };
 
-  const onDeleteContact = (e) => {
-    try {
-      dispatch(contactOperations.deleteContact(e));
-    } catch {
-      console.log("не получилось удалить");
-    }
-  };
-
   return (
     <>
       <ul className={s.contactList}>
         {filteredContacts.length !== 0
           ? filteredContacts.map((contacts) => (
-              <li
-                className={s.contactList__item}
+              <ContactListItem
                 key={contacts.id}
-                id={contacts.id}
-                onClick={(e) => {
-                  if (e.target.nodeName !== "BUTTON") {
-                    return;
-                  }
-                  if (e.target.id === "delete") {
-                    onDeleteContact(e.currentTarget.id);
-                  }
-
-                  if (e.target.id === "update") {
-                    dispatch(contactOperations.sendUpdatedContact("true"));
-                  }
-                }}
-              >
-                <div className={s.contactList__form}>
-                  <span>{contacts.name}</span>:<span>{contacts.number}</span>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    size="small"
-                    id="delete"
-                    className={s.contactList__button}
-                  >
-                    Delete
-                  </Button>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    id="update"
-                    size="small"
-                    className={s.contactList__button}
-                    onClick={() => toggleModal(contacts.id)}
-                  >
-                    Update
-                  </Button>
-                </div>
-              </li>
+                {...contacts}
+                toggleModal={toggleModal}
+              />
             ))
           : null}
       </ul>

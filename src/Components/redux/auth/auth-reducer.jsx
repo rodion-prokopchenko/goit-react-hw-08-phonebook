@@ -13,7 +13,8 @@ const authSlice = createSlice({
   extraReducers: {
     // REGISTER
     [authOperations.register.fulfilled](state, action) {
-      state.user = action.payload.user;
+      console.log(`action in FF: `, action);
+      state.user = action.meta.arg;
       state.token = action.payload.token;
       state.isLoggedIn = true;
       console.log("Успешно зарегистрировались");

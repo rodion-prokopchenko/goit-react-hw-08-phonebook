@@ -25,6 +25,7 @@ export default function RegisterPage() {
   };
 
   const handleSubmit = (e) => {
+    console.log("кнопка работает");
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
     setName("");
@@ -36,7 +37,7 @@ export default function RegisterPage() {
     <div>
       <h1>Страница регистрации</h1>
 
-      <Box onSubmit={handleSubmit} className={s.form__box} autoComplete="off">
+      <form onSubmit={handleSubmit} className={s.form__box} autoComplete="off">
         <label className={s.form__label}>
           Имя
           <TextField
@@ -88,7 +89,7 @@ export default function RegisterPage() {
         >
           Зарегистрироваться
         </Button>
-      </Box>
+      </form>
     </div>
   );
 }

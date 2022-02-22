@@ -63,9 +63,6 @@ const updateContact = createAsyncThunk(
   }
 );
 
-// SENDUPDATECONTACT
-const sendUpdatedContact = createAction("updateContact/updating");
-
 // CHANGEFILTER
 const changeFilter = createAction("filter/change");
 
@@ -75,6 +72,5 @@ const contactOperations = {
   deleteContact,
   getContact,
   changeFilter,
-  sendUpdatedContact,
 };
 export default contactOperations;
