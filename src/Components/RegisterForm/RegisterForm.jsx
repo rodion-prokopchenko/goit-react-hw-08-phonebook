@@ -1,9 +1,13 @@
 import { Button, TextField } from "@mui/material";
-import { Box } from "@mui/system";
-import { useState } from "react";
+import { useRef } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
 import s from "./RegisterForm.module.css";
+import {
+  successRegisterNotification,
+  errorRegisterNotification,
+} from "../Pnotify/Pnotify";
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -11,18 +15,30 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [emailDirty, setEmailDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
-  const [nameDirty, setNameDirty] = useState(false);
-  const [emailError, setEmailError] = useState(null);
-  const [passwordError, setPasswordError] = useState(null);
-  const [nameError, setNameError] = useState(null);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+
+  const [isValidForm, setIsValidForm] = useState(false);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (emailError === null && passwordError === null && nameError === null) {
+      setIsValidForm(true);
+    } else {
+      setIsValidForm(false);
+    }
+  }, [emailError, passwordError, nameError]);
 
   const nameValidation = (e) => {
     if (e.target.value.length === 0) {
       return setNameError("Имя не может быть пустым");
     }
-    if (e.target.value.length < 3) {
+    if (e.target.value.length < 6) {
       return setNameError("Имя должно иметь минимум 6 символов");
     }
     setNameError(null);
@@ -42,10 +58,10 @@ export default function RegisterPage() {
     if (e.target.value.length === 0) {
       return setEmailError("Емейл не может быть пустым");
     }
-    const v = /.+@.+\..+/i;
-    if (!v.test(String(e.target.value).toLocaleLowerCase())) {
-      return setEmailError("Некорректный емейл");
-    }
+    // const v = /.+@.+\..+/i;
+    // if (!v.test(String(e.target.value).toLocaleLowerCase())) {
+    //   return setEmailError("Некорректный емейл");
+    // }
     setEmailError(null);
   };
 
@@ -53,13 +69,13 @@ export default function RegisterPage() {
     switch (e.target.name) {
       case "name":
         nameValidation(e);
-        return setNameDirty(true);
+        return;
       case "email":
         emailValidation(e);
-        return setEmailDirty(true);
+        return;
       case "password":
         passwordValidation(e);
-        return setPasswordDirty(true);
+        return;
       default:
         return;
     }
@@ -71,7 +87,6 @@ export default function RegisterPage() {
         return setName(value);
       case "email":
         return setEmail(value);
-
       case "password":
         return setPassword(value);
       default:
@@ -79,13 +94,18 @@ export default function RegisterPage() {
     }
   };
 
-  const handleSubmit = (e) => {
-    console.log("кнопка работает");
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
-    setName("");
-    setEmail("");
-    setPassword("");
+    try {
+      await dispatch(authOperations.register({ name, email, password }));
+      setName("");
+      setEmail("");
+      setPassword("");
+
+      successRegisterNotification(name);
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
   return (
@@ -94,12 +114,12 @@ export default function RegisterPage() {
 
       <form onSubmit={handleSubmit} className={s.form__box} autoComplete="off">
         <label className={s.form__label}>
-          {nameDirty && nameError && (
+          {nameError ? (
             <div className={s.form__textError}>{nameError}</div>
-          )}
+          ) : null}
           Имя
           <TextField
-            placeholder="Пример: Rodion/rod123"
+            placeholder="Пример: Rodion/rod1234"
             onBlur={blurHandler}
             type="text"
             name="name"
@@ -113,9 +133,9 @@ export default function RegisterPage() {
         </label>
 
         <label className={s.form__label}>
-          {emailDirty && emailError && (
+          {emailError ? (
             <div className={s.form__textError}>{emailError}</div>
-          )}
+          ) : null}
           Почта
           <TextField
             placeholder="Пример: rod@mail.com"
@@ -132,9 +152,9 @@ export default function RegisterPage() {
         </label>
 
         <label className={s.form__label}>
-          {passwordDirty && passwordError && (
+          {passwordError ? (
             <div className={s.form__textError}>{passwordError}</div>
-          )}
+          ) : null}
           Пароль
           <TextField
             placeholder="Не меньше 7 символов"
@@ -156,6 +176,7 @@ export default function RegisterPage() {
           sx={{
             "& ": { mt: 2, width: "30ch" },
           }}
+          disabled={!isValidForm}
         >
           Зарегистрироваться
         </Button>

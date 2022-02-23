@@ -3,6 +3,10 @@ import { useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
 import { Button, TextField } from "@mui/material";
 import s from "./LoginForm.module.css";
+import {
+  successLoginNotification,
+  errorLoginNotification,
+} from "../Pnotify/Pnotify";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -20,12 +24,16 @@ export default function LoginForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    dispatch(authOperations.logIn({ email, password }));
-    setEmail("");
-    setPassword("");
+    try {
+      await dispatch(authOperations.logIn({ email, password }));
+      setEmail("");
+      setPassword("");
+      successLoginNotification(email);
+    } catch (error) {
+      // errorLoginNotification(error.message);
+    }
   };
 
   return (
