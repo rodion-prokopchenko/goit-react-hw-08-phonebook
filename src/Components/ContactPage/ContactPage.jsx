@@ -37,7 +37,6 @@ export default function ContactPage() {
     <>
       <div className={s.contactPage}>
         <ContactForm compairContacts={compairContacts} />
-
         <Filter />
         {isFetching === "pending" ? (
           <h2>Loading...</h2>

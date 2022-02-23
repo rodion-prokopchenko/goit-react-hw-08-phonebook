@@ -1,4 +1,3 @@
-import { Alert } from "@mui/material";
 import { createSlice, createReducer } from "@reduxjs/toolkit";
 
 import contactOperations from "./contact-actions";
@@ -23,8 +22,9 @@ const contactsSlice = createSlice({
     [contactOperations.getContact.pending](state, action) {
       state.isFetching = "pending";
     },
-    [contactOperations.getContact.rejected](_, action) {
+    [contactOperations.getContact.rejected](state, action) {
       console.log("что-то не так с фетчингом");
+      state.isFetching = "done";
     },
 
     // ADD
@@ -45,6 +45,7 @@ const contactsSlice = createSlice({
     },
     [contactOperations.addContact.rejected](state, _) {
       console.log("что-то не так");
+      state.isFetching = "done";
     },
 
     // DELETE
@@ -62,6 +63,7 @@ const contactsSlice = createSlice({
     },
     [contactOperations.deleteContact.rejected](state, _) {
       console.log("что-то не так");
+      state.isFetching = "done";
     },
 
     // UPDATE
@@ -75,6 +77,7 @@ const contactsSlice = createSlice({
     },
     [contactOperations.updateContact.rejected](state, _) {
       console.log("что-то пошло не так");
+      state.isFetching = "done";
     },
   },
 });

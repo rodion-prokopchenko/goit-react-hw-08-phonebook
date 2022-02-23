@@ -1,40 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import contactOperations from "../redux/contacts/contact-actions";
 import contactSelectors from "../redux/contacts/contact-selectors";
-import { useEffect, useRef, useState } from "react";
 
 import s from "./ContactListItem.module.css";
 import Button from "@mui/material/Button";
-import toastr from "toastr";
+import {
+  errorDeletedNotification,
+  successDeletedNotification,
+} from "../Pnotify/Pnotify";
 
 export default function ContactListItem({ id, name, number, toggleModal }) {
-  toastr.options = {
-    closeButton: false,
-    debug: false,
-    newestOnTop: false,
-    progressBar: false,
-    positionClass: "toast-top-right",
-    preventDuplicates: false,
-    onclick: null,
-    showDuration: "300",
-    hideDuration: "1000",
-    timeOut: "5000",
-    extendedTimeOut: "1000",
-    showEasing: "swing",
-    hideEasing: "linear",
-    showMethod: "fadeIn",
-    hideMethod: "fadeOut",
-    escapeHtml: true,
-  };
   const dispatch = useDispatch();
+  const isFetching = useSelector(contactSelectors.getFetching);
 
   const onDeleteContact = (e) => {
     try {
       dispatch(contactOperations.deleteContact(e));
 
-      toastr.success("Успешно удалили");
-    } catch {
-      console.log("не получилось удалить");
+      successDeletedNotification(name);
+    } catch (error) {
+      errorDeletedNotification(error);
+      console.log("не получилось удалить", error);
     }
   };
 
@@ -60,6 +46,9 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
             size="small"
             id="delete"
             className={s.contactList__button}
+            sx={{
+              "& ": { mr: 1, ml: 1 },
+            }}
           >
             Delete
           </Button>

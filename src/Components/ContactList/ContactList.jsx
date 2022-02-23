@@ -4,10 +4,12 @@ import contactSelectors from "../redux/contacts/contact-selectors";
 import { useState } from "react";
 import ModalWindow from "../Modal/Modal";
 
-import "toastr";
 import ContactListItem from "../ContactListItem/ContactListItem";
 import s from "./ContactList.module.css";
-import toastr from "toastr";
+import {
+  successUpdateNotification,
+  errorUpdateNotification,
+} from "../Pnotify/Pnotify";
 
 export default function ContactList({ filteredContacts }) {
   const [showModal, setShowModal] = useState(false);
@@ -31,9 +33,9 @@ export default function ContactList({ filteredContacts }) {
 
     try {
       dispatch(contactOperations.updateContact({ id, updatedContact, index }));
-      toastr.success("Успешно обновили");
-    } catch {
-      toastr.warning("Не удалось обновить");
+      successUpdateNotification(editCurrentContact.name);
+    } catch (error) {
+      errorUpdateNotification(editCurrentContact.name);
     }
   }
 
