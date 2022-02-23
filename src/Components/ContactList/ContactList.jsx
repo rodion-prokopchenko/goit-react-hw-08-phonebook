@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import contactOperations from "../redux/contacts/contact-actions";
 import contactSelectors from "../redux/contacts/contact-selectors";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ModalWindow from "../Modal/Modal";
 
+import "toastr";
 import ContactListItem from "../ContactListItem/ContactListItem";
 import s from "./ContactList.module.css";
+import toastr from "toastr";
 
 export default function ContactList({ filteredContacts }) {
   const [showModal, setShowModal] = useState(false);
@@ -29,8 +31,9 @@ export default function ContactList({ filteredContacts }) {
 
     try {
       dispatch(contactOperations.updateContact({ id, updatedContact, index }));
+      toastr.success("Успешно обновили");
     } catch {
-      console.log("не получилось обновить");
+      toastr.warning("Не удалось обновить");
     }
   }
 
