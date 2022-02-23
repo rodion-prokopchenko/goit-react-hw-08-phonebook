@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
 import s from "./RegisterForm.module.css";
-import {
-  successRegisterNotification,
-  errorRegisterNotification,
-} from "../Pnotify/Pnotify";
+import { successRegisterNotification } from "../Pnotify/Pnotify";
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -58,10 +55,10 @@ export default function RegisterPage() {
     if (e.target.value.length === 0) {
       return setEmailError("Емейл не может быть пустым");
     }
-    // const v = /.+@.+\..+/i;
-    // if (!v.test(String(e.target.value).toLocaleLowerCase())) {
-    //   return setEmailError("Некорректный емейл");
-    // }
+    const v = /.+@.+\..+/i;
+    if (!v.test(String(e.target.value).toLocaleLowerCase())) {
+      return setEmailError("Некорректный емейл");
+    }
     setEmailError(null);
   };
 
