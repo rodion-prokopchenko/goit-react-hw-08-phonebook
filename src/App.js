@@ -7,11 +7,16 @@ import LoginForm from "./Components/LoginForm/LoginForm";
 import RegisterPage from "./Components/RegisterForm/RegisterForm";
 import ContactPage from "./Components/ContactPage/ContactPage";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import authOperations from "./Components/redux/auth/auth-operatons";
+import authSelectors from "./Components/redux/auth/auth-selectors";
+import { RotatingLines } from "react-loader-spinner";
 
 export default function App() {
   const dispatch = useDispatch();
+
+  const loadingCurrentUser = useSelector(authSelectors.getIsLoadingCurrentUser);
+  console.log(loadingCurrentUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -19,26 +24,38 @@ export default function App() {
 
   return (
     <>
-      <AppBar path="/" />
-      <div className={s.app}>
-        <Suspense fallback={<h2>Loading...</h2>}>
-          <Routes>
-            <Route
-              element={
-                <>
-                  <PrivateRoute redirectTo="/login" />
-                </>
-              }
-            >
-              <Route path="/contact" element={<ContactPage />}></Route>
-            </Route>
-            <Route element={<PublicRoute restricted />}>
-              <Route path="/login" element={<LoginForm />}></Route>
-              <Route path="/register" element={<RegisterPage />}></Route>
-            </Route>
-          </Routes>
-        </Suspense>
-      </div>
+      {loadingCurrentUser ? (
+        <div className={s.spinner}>
+          <RotatingLines
+            width="100"
+            strokeColor="#6495ED"
+            strokeWidth="3"
+            animationDuration="3"
+          />
+        </div>
+      ) : (
+        <>
+          <AppBar path="/" />
+
+          <div className={s.app}>
+            <Routes>
+              <Route
+                element={
+                  <>
+                    <PrivateRoute redirectTo="/login" />
+                  </>
+                }
+              >
+                <Route path="/contact" element={<ContactPage />}></Route>
+              </Route>
+              <Route element={<PublicRoute restricted />}>
+                <Route path="/login" element={<LoginForm />}></Route>
+                <Route path="/register" element={<RegisterPage />}></Route>
+              </Route>
+            </Routes>
+          </div>
+        </>
+      )}
     </>
   );
 }

@@ -9,9 +9,10 @@ import s from "./ContactList.module.css";
 import {
   successUpdateNotification,
   errorUpdateNotification,
+  errorSameNameNotification,
 } from "../Pnotify/Pnotify";
 
-export default function ContactList({ filteredContacts }) {
+export default function ContactList({ filteredContacts, compairContacts }) {
   const [showModal, setShowModal] = useState(false);
   const [editCurrentContact, setEditCurrentContact] = useState(null);
   const Contacts = useSelector(contactSelectors.getContacts);
@@ -30,6 +31,15 @@ export default function ContactList({ filteredContacts }) {
         return true;
       }
     });
+    if (
+      editCurrentContact.name === updatedContact.name &&
+      editCurrentContact.number === updatedContact.number
+    ) {
+      return;
+    }
+    if (compairContacts(name)) {
+      return errorSameNameNotification(name);
+    }
 
     try {
       dispatch(contactOperations.updateContact({ id, updatedContact, index }));
@@ -44,6 +54,9 @@ export default function ContactList({ filteredContacts }) {
     setShowModal(!showModal);
   };
 
+  const toggleModalForKey = () => {
+    setShowModal(!showModal);
+  };
   return (
     <>
       <ul className={s.contactList}>
@@ -61,6 +74,7 @@ export default function ContactList({ filteredContacts }) {
         <ModalWindow
           contact={editCurrentContact}
           onClose={toggleModal}
+          onCloseForKey={toggleModalForKey}
           upd={onUpdateContact}
         />
       )}

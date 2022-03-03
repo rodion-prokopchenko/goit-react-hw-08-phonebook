@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Modal, Overlay } from "./Modal.styled";
 
-export default function ModalWindow({ onClose, contact, upd }) {
+export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
   const [name, setName] = useState(contact.name);
   const [number, setNumber] = useState(contact.number);
 
@@ -32,7 +32,7 @@ export default function ModalWindow({ onClose, contact, upd }) {
 
   const handleKeydown = (e) => {
     if (e.code === "Escape") {
-      onClose();
+      onCloseForKey();
     }
   };
 

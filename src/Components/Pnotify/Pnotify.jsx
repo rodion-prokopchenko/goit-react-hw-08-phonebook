@@ -1,13 +1,13 @@
-import * as PNotifyMobile from "@pnotify/mobile";
+import { error, alert, defaultModules } from "@pnotify/core";
 import * as Pnotify from "@pnotify/core";
 import "@pnotify/core/dist/PNotify.css";
+import * as PNotifyMobile from "@pnotify/mobile";
 import "@pnotify/mobile/dist/PNotifyMobile.css";
 import "@pnotify/core/dist/Material.css";
 import "material-design-icons/iconfont/material-icons.css";
 
-Pnotify.styling = "material";
 Pnotify.icons = "material";
-Pnotify.defaultModules.set(PNotifyMobile, {});
+defaultModules.set(PNotifyMobile, {});
 
 // LOGIN
 const successLoginNotification = (user) => {
@@ -47,6 +47,15 @@ const errorRegisterNotification = (error) => {
 const successAddNotification = (contact) => {
   Pnotify.success({
     text: `Contact "${contact}" has been added`,
+    delay: 3300,
+    styling: "material",
+  });
+};
+
+// ADD && UPDATE
+const errorSameNameNotification = (contact) => {
+  Pnotify.error({
+    text: `Contact "${contact}" is already presented/added in contacts`,
     delay: 3300,
     styling: "material",
   });
@@ -100,6 +109,7 @@ export {
   errorRegisterNotification,
   successRegisterNotification,
   successAddNotification,
+  errorSameNameNotification,
   errorAddNotification,
   errorDeletedNotification,
   successDeletedNotification,

@@ -4,6 +4,11 @@ import contactOperations from "../redux/contacts/contact-actions";
 import { useDispatch } from "react-redux";
 import { TextField, Box } from "@mui/material";
 import Button from "@mui/material/Button";
+import {
+  errorSameNameNotification,
+  successAddNotification,
+  errorDeletedNotification,
+} from "../Pnotify/Pnotify";
 
 export const inputForm = react.createRef();
 
@@ -32,13 +37,14 @@ export default function ContactForm({ compairContacts }) {
       return;
     }
     if (compairContacts(name)) {
-      return alert(`${name} is already in contacts`);
+      return errorSameNameNotification(name);
     }
     let newContact = { name: name, number: number };
     try {
       dispatch(contactOperations.addContact(newContact));
+      successAddNotification(name);
     } catch {
-      console.log("не получилось добавить");
+      errorDeletedNotification(name);
     }
 
     reset();

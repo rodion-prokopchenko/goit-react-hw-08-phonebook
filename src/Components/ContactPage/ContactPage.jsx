@@ -6,6 +6,7 @@ import contactSelectors from "../redux/contacts/contact-selectors";
 import contactOperations from "../redux/contacts/contact-actions";
 import { useEffect } from "react";
 import s from "./ContactPage.module.css";
+import { RotatingLines } from "react-loader-spinner";
 
 export default function ContactPage() {
   const dispatch = useDispatch();
@@ -39,9 +40,18 @@ export default function ContactPage() {
         <ContactForm compairContacts={compairContacts} />
         <Filter />
         {isFetching === "pending" ? (
-          <h2>Loading...</h2>
+          <RotatingLines
+            width="100"
+            strokeColor="#6495ED"
+            strokeWidth="3"
+            animationDuration="3"
+          />
         ) : (
-          <ContactList filteredContacts={filterStore} isFetching={isFetching} />
+          <ContactList
+            filteredContacts={filterStore}
+            isFetching={isFetching}
+            compairContacts={compairContacts}
+          />
         )}
       </div>
     </>
