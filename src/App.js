@@ -11,6 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 import authOperations from "./Components/redux/auth/auth-operatons";
 import authSelectors from "./Components/redux/auth/auth-selectors";
 import { RotatingLines } from "react-loader-spinner";
+import { ToastContainer } from "react-toastify";
+
+import Aaaa from "./Components/A/Aaaaa";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -47,12 +50,14 @@ export default function App() {
                 }
               >
                 <Route path="/contact" element={<ContactPage />}></Route>
+                <Route path="/a" element={<Aaaa />}></Route>
               </Route>
               <Route element={<PublicRoute restricted />}>
                 <Route path="/login" element={<LoginForm />}></Route>
                 <Route path="/register" element={<RegisterPage />}></Route>
               </Route>
             </Routes>
+            <ToastContainer limit={4} />
           </div>
         </>
       )}

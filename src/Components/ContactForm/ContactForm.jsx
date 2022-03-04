@@ -8,7 +8,7 @@ import {
   errorSameNameNotification,
   successAddNotification,
   errorDeletedNotification,
-} from "../Pnotify/Pnotify";
+} from "../Notify/Toastify";
 
 export const inputForm = react.createRef();
 

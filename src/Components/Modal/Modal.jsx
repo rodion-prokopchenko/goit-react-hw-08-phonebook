@@ -31,6 +31,9 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
   };
 
   const handleKeydown = (e) => {
+    if (e.code !== "Escape") {
+      console.log(e.code);
+    }
     if (e.code === "Escape") {
       onCloseForKey();
     }

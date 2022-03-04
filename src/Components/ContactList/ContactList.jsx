@@ -10,7 +10,7 @@ import {
   successUpdateNotification,
   errorUpdateNotification,
   errorSameNameNotification,
-} from "../Pnotify/Pnotify";
+} from "../Notify/Toastify";
 
 export default function ContactList({ filteredContacts, compairContacts }) {
   const [showModal, setShowModal] = useState(false);

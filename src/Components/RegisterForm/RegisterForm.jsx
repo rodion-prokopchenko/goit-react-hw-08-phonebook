@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
 import s from "./RegisterForm.module.css";
-import { successRegisterNotification } from "../Pnotify/Pnotify";
+import { successRegisterNotification } from "../Notify/Toastify";
 
 export default function RegisterPage() {
   const dispatch = useDispatch();

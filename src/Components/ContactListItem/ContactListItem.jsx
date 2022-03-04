@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import {
   errorDeletedNotification,
   successDeletedNotification,
-} from "../Pnotify/Pnotify";
+} from "../Notify/Toastify";
 
 export default function ContactListItem({ id, name, number, toggleModal }) {
   const dispatch = useDispatch();

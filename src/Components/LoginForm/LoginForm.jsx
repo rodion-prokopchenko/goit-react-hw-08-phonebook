@@ -6,7 +6,7 @@ import s from "./LoginForm.module.css";
 import {
   successLoginNotification,
   errorLoginNotification,
-} from "../Pnotify/Pnotify";
+} from "../Notify/Toastify";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export default function LoginForm() {
       setPassword("");
       successLoginNotification(email);
     } catch (error) {
-      // errorLoginNotification(error.message);
+      errorLoginNotification(error.message);
     }
   };
 
