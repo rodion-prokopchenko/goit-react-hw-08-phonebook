@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid black; */
+
+  margin-bottom: 50px;
+}
+.form__item {
+  margin-bottom: 10px;
+}
+.form__text {
+  text-align: center;
+}
+.form__button {
+  width: 30px;
+}

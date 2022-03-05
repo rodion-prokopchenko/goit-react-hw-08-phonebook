@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Modal, Overlay } from "./Modal.styled";
 import { TextField, Box } from "@mui/material";
+import s from "./Modal.module.css";
 
 export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
   const [name, setName] = useState(contact.name);
@@ -50,19 +51,25 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
   return (
     <Overlay onClick={handleBackdropClick}>
       <Modal>
-        <form>
+        <Box
+          className={s.form}
+          component="form"
+          sx={{
+            "& > :not(style)": { mb: 0 },
+          }}
+        >
           <label htmlFor={"nameInput"}>Name</label>
-          <TextField
+          <input
             id="updateNameInput"
             type="text"
             name="name"
             value={name}
             size="small"
             onChange={handleChange}
-          ></TextField>
+          ></input>
 
           <label htmlFor={"nameInput"}>Number</label>
-          <TextField
+          <input
             id="updateNumberInput"
             type="tel"
             name="number"
@@ -70,11 +77,11 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
             value={number}
             size="small"
             onChange={handleChange}
-          ></TextField>
+          ></input>
           <button type="submit" onClick={onHandleSubmit}>
             Edit
           </button>
-        </form>
+        </Box>
       </Modal>
     </Overlay>
   );
