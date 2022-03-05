@@ -3,7 +3,7 @@ import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
 
-// GETCONTACT
+// GET CONTACT
 const getContact = createAsyncThunk(
   "contact/getContact",
   async (credentials) => {
@@ -17,7 +17,7 @@ const getContact = createAsyncThunk(
   }
 );
 
-// ADDCONTACT
+// ADD CONTACT
 const addContact = createAsyncThunk(
   "contact/addContact",
   async (credentials) => {
@@ -33,7 +33,7 @@ const addContact = createAsyncThunk(
   }
 );
 
-// DELETECONTACT
+// DELETE CONTACT
 const deleteContact = createAsyncThunk(
   "contact/deleteContact",
   async (contactId) => {
@@ -45,7 +45,21 @@ const deleteContact = createAsyncThunk(
   }
 );
 
-// UPDATECONTACT
+// RETURN DELETED CONTACT
+const returnDeletedContact = createAsyncThunk(
+  "returnedContact/returnDeletedContact",
+  async ({ reternedContact, index }) => {
+    try {
+      const { data } = await axios.post("/contacts", reternedContact, index);
+
+      return data;
+    } catch (error) {
+      return console.error(error);
+    }
+  }
+);
+
+// UPDATE CONTACT
 const updateContact = createAsyncThunk(
   "updateContact/sendUpdatedContact",
   async ({ id, updatedContact, index }) => {
@@ -72,5 +86,6 @@ const contactOperations = {
   deleteContact,
   getContact,
   changeFilter,
+  returnDeletedContact,
 };
 export default contactOperations;

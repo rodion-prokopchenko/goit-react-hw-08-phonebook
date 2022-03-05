@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 const successLoginNotification = (user) => {
   toast.success(`User "${user}" has been logined`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -17,7 +17,7 @@ const successLoginNotification = (user) => {
 const errorLoginNotification = (error) => {
   toast.error(`${error.message}`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -30,7 +30,7 @@ const errorLoginNotification = (error) => {
 const successRegisterNotification = (user) => {
   toast.success(`User "${user}" has been registered`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -42,7 +42,7 @@ const successRegisterNotification = (user) => {
 const errorRegisterNotification = (error) => {
   toast.error(`${error.message}`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -65,7 +65,7 @@ const errorRegisterNotification = (error) => {
 const successAddNotification = (contact) => {
   toast.success(`Contact "${contact}" has been added`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -77,7 +77,7 @@ const successAddNotification = (contact) => {
 const errorAddNotification = (contact) => {
   toast.error(`Contact "${contact}" hasn't been added`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -90,7 +90,7 @@ const errorAddNotification = (contact) => {
 const errorSameNameNotification = (contact) => {
   toast.error(`Contact "${contact}" is already presented/added in contacts`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -103,7 +103,7 @@ const errorSameNameNotification = (contact) => {
 const errorDeletedNotification = (contact) => {
   toast.error(`Contact "${contact}" hasn't been deleted`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -115,7 +115,32 @@ const errorDeletedNotification = (contact) => {
 const successDeletedNotification = (contact) => {
   toast.success(`Contact "${contact}" has been deleted`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
+
+// RETURN DELETED CONTACT
+const successReturnNotification = (contact) => {
+  toast.success(`The deleted contact "${contact}" has been reterned`, {
+    position: "top-right",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
+
+const errorReturnNotification = (contact) => {
+  toast.error(`The deleted contact "${contact}" has been reterned`, {
+    position: "top-right",
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -128,7 +153,7 @@ const successDeletedNotification = (contact) => {
 const successUpdateNotification = (contact) => {
   toast.success(`Contact "${contact}" has been updated`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -140,7 +165,7 @@ const successUpdateNotification = (contact) => {
 const errorUpdateNotification = (contact) => {
   toast.error(`Contact "${contact}" hasn't been updated`, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -150,6 +175,8 @@ const errorUpdateNotification = (contact) => {
 };
 
 export {
+  successReturnNotification,
+  errorReturnNotification,
   successLoginNotification,
   errorLoginNotification,
   errorRegisterNotification,
@@ -162,5 +189,3 @@ export {
   successUpdateNotification,
   errorUpdateNotification,
 };
-
-////////////////////////////////////////////////////

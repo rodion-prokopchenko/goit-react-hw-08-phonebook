@@ -57,7 +57,13 @@ export default function App() {
                 <Route path="/register" element={<RegisterPage />}></Route>
               </Route>
             </Routes>
-            <ToastContainer limit={4} />
+            <ToastContainer
+              limit={4}
+              autoClose={3000}
+              newestOnTop={true}
+              closeOnClick={false}
+              pauseOnFocusLoss={false}
+            />
           </div>
         </>
       )}

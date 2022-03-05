@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal, Overlay } from "./Modal.styled";
+import { TextField, Box } from "@mui/material";
 
 export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
   const [name, setName] = useState(contact.name);
@@ -50,21 +51,26 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
     <Overlay onClick={handleBackdropClick}>
       <Modal>
         <form>
-          <input
+          <label htmlFor={"nameInput"}>Name</label>
+          <TextField
+            id="updateNameInput"
             type="text"
             name="name"
             value={name}
             size="small"
             onChange={handleChange}
-          ></input>
-          <input
+          ></TextField>
+
+          <label htmlFor={"nameInput"}>Number</label>
+          <TextField
+            id="updateNumberInput"
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             value={number}
             size="small"
             onChange={handleChange}
-          ></input>
+          ></TextField>
           <button type="submit" onClick={onHandleSubmit}>
             Edit
           </button>

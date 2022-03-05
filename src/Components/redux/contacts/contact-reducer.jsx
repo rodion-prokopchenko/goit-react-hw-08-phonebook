@@ -31,8 +31,8 @@ const contactsSlice = createSlice({
     [contactOperations.addContact.fulfilled](state, action) {
       {
         action.payload
-          ? state.contacts.push(action.payload)
-          : state.contacts.push(action.meta.arg);
+          ? state.contacts.unshift(action.payload)
+          : state.contacts.unshift(action.meta.arg);
       }
       state.isFetching = "done";
 
@@ -65,7 +65,19 @@ const contactsSlice = createSlice({
       console.log("что-то не так");
       state.isFetching = "done";
     },
-
+    // RETURN DELETED CONTACT
+    [contactOperations.returnDeletedContact.fulfilled](state, action) {
+      state.contacts.splice(action.meta.arg.index, 0, action.payload);
+      state.isFetching = "done";
+    },
+    [contactOperations.returnDeletedContact.pending](state, _) {
+      console.log("обновляем контакт");
+      state.isFetching = "pending";
+    },
+    [contactOperations.returnDeletedContact.rejected](state, _) {
+      console.log("что-то пошло не так");
+      state.isFetching = "done";
+    },
     // UPDATE
     [contactOperations.updateContact.fulfilled](state, action) {
       state.contacts.splice(action.meta.arg.index, 1, action.payload);
