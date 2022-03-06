@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Modal, Overlay } from "./Modal.styled";
-import { TextField, Box } from "@mui/material";
 import s from "./Modal.module.css";
 
 export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
@@ -51,37 +50,36 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
   return (
     <Overlay onClick={handleBackdropClick}>
       <Modal>
-        <Box
-          className={s.form}
-          component="form"
-          sx={{
-            "& > :not(style)": { mb: 0 },
-          }}
-        >
-          <label htmlFor={"nameInput"}>Name</label>
+        <form className={s.form}>
+          <label htmlFor={"nameInput"} className={s.form__text}>
+            Name
+          </label>
+          {/* <button>Показать прошлое имяя</button> */}
           <input
+            className={s.form__input}
             id="updateNameInput"
             type="text"
             name="name"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             value={name}
-            size="small"
             onChange={handleChange}
           ></input>
 
-          <label htmlFor={"nameInput"}>Number</label>
+          <label htmlFor={"nameInput"} className={s.form__text}>
+            Number
+          </label>
           <input
             id="updateNumberInput"
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             value={number}
-            size="small"
             onChange={handleChange}
           ></input>
           <button type="submit" onClick={onHandleSubmit}>
             Edit
           </button>
-        </Box>
+        </form>
       </Modal>
     </Overlay>
   );
