@@ -2,16 +2,72 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid black; */
+  margin-top: 40px;
 
   margin-bottom: 50px;
 }
-.form__item {
+.form__input_name,
+.form__input_number {
+  height: 2rem;
+  border-radius: 7px;
+  padding: 10px 10px 10px 25px;
+
+  border-color: #1976d2;
+
+  font-size: 1.2rem;
+}
+
+.form__input_name:hover,
+.form__input_number:hover {
+  background-color: aliceblue;
+}
+
+.form__label_name {
+  position: relative;
+
+  top: -40px;
+  left: -90px;
+  text-align: center;
+  color: grey;
+
+  font-size: 1.2rem;
   margin-bottom: 10px;
 }
-.form__text {
+
+.form__label_number {
+  position: relative;
+
+  top: -40px;
+  left: -81px;
   text-align: center;
+  color: grey;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 .form__button {
   width: 30px;
+}
+
+.form .form__input_name::-moz-placeholder,
+.form__input_number::-moz-placeholder {
+  color: transparent;
+}
+.form .form__input_name::placeholder,
+.form__input_number::placeholder {
+  color: transparent;
+}
+
+.form .form__input_name:focus ~ .form__label_name,
+.form .form__input_name:not(:placeholder-shown) ~ .form__label_name {
+  transform: translateY(-120%) translateX(-7%) scale(0.75);
+  background-color: white;
+  color: #1976d2;
+  width: 70px;
+}
+.form .form__input_number:focus ~ .form__label_number,
+.form .form__input_number:not(:placeholder-shown) ~ .form__label_number {
+  transform: translateY(-120%) translateX(-10%) scale(0.75);
+  background-color: white;
+  color: #1976d2;
+  width: 86px;
 }

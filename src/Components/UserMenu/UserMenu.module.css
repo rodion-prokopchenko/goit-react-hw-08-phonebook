@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-bottom: 3px solid #1976d2;
+  background-color: #c5dcf3;
 }
 
 .userMenu__button {

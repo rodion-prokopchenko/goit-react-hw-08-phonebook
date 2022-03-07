@@ -10,8 +10,6 @@ import {
   errorDeletedNotification,
 } from "../Notify/Toastify";
 
-export const inputForm = react.createRef();
-
 export default function ContactForm({ compairContacts }) {
   const dispatch = useDispatch();
 
@@ -68,45 +66,41 @@ export default function ContactForm({ compairContacts }) {
   };
   return (
     <>
-      <Box
+      <form
         className={s.form}
         component="form"
         sx={{
           "& > :not(style)": { m: 1 },
         }}
       >
-        <label htmlFor={"nameInput"} className={s.form__text}>
-          Name
-        </label>
-        <TextField
-          ref={inputForm}
-          size="small"
-          className={s.form__item}
+        <input
+          className={s.form__input_name}
           id="nameInput"
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
           onInput={onChange}
           value={name}
+          placeholder="empty"
         />
-        <label htmlFor={"numberInput"} className={s.form__text}>
-          Number
+        <label htmlFor={"nameInput"} className={s.form__label_name}>
+          Name
         </label>
-        <TextField
-          width="20ch"
-          size="small"
-          className={s.form__item}
+        <input
+          className={s.form__input_number}
           id="numberInput"
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
           onInput={onChange}
           value={number}
+          placeholder="empty"
         />
+        <label htmlFor={"numberInput"} className={s.form__label_number}>
+          Number
+        </label>
         <Button
           sx={{
             "& ": { width: "13ch" },
@@ -117,7 +111,7 @@ export default function ContactForm({ compairContacts }) {
         >
           Добавить
         </Button>
-      </Box>
+      </form>
     </>
   );
 }

@@ -11,7 +11,7 @@ export default function UserMenu() {
   const dispatch = useDispatch();
 
   const userEmail = useSelector(authSelectors.getEmail);
-  const [showContacts, setShowContacts] = useState("false");
+  const [showContacts, setShowContacts] = useState(null);
 
   function changeShowContacts() {
     setShowContacts(!showContacts);

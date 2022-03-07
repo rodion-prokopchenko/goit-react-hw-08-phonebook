@@ -32,9 +32,6 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
   };
 
   const handleKeydown = (e) => {
-    if (e.code !== "Escape") {
-      console.log(e.code);
-    }
     if (e.code === "Escape") {
       onCloseForKey();
     }
@@ -51,10 +48,10 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
     <Overlay onClick={handleBackdropClick}>
       <Modal>
         <form className={s.form}>
-          <label htmlFor={"nameInput"} className={s.form__text}>
+          <label htmlFor={"updateNameInput"} className={s.form__text}>
             Name
           </label>
-          {/* <button>Показать прошлое имяя</button> */}
+          {/* <button>Показать прошлое имя</button> */}
           <input
             className={s.form__input}
             id="updateNameInput"
@@ -65,7 +62,7 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
             onChange={handleChange}
           ></input>
 
-          <label htmlFor={"nameInput"} className={s.form__text}>
+          <label htmlFor={"updateNumberInput"} className={s.form__text}>
             Number
           </label>
           <input
