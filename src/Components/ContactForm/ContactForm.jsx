@@ -1,14 +1,15 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import s from "./ContactForm.module.css";
 import contactOperations from "../redux/contacts/contact-actions";
 import { useDispatch } from "react-redux";
-import { TextField, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import {
   errorSameNameNotification,
   successAddNotification,
   errorDeletedNotification,
-} from "../Notify/Toastify";
+  warningNameAddNotification,
+  warningNumberAddNotification,
+} from "../Toastify/Toastify";
 
 export default function ContactForm({ compairContacts }) {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function ContactForm({ compairContacts }) {
     setName("");
     setNumber("");
   };
+  const isValidButton = name && number ? true : false;
 
   const onSumbitButton = (e) => {
     e.preventDefault();
@@ -27,12 +29,10 @@ export default function ContactForm({ compairContacts }) {
       return;
     }
     if (name === "") {
-      alert("Введите имя");
-      return;
+      return warningNameAddNotification();
     }
     if (number === "") {
-      alert("Введите номер");
-      return;
+      return warningNumberAddNotification();
     }
     if (compairContacts(name)) {
       return errorSameNameNotification(name);
@@ -108,8 +108,9 @@ export default function ContactForm({ compairContacts }) {
           type="button"
           variant="contained"
           onClick={onSumbitButton}
+          disabled={!isValidButton}
         >
-          Добавить
+          Add
         </Button>
       </form>
     </>

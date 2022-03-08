@@ -6,7 +6,7 @@ import s from "./LoginForm.module.css";
 import {
   successLoginNotification,
   errorLoginNotification,
-} from "../Notify/Toastify";
+} from "../Toastify/Toastify";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -48,27 +48,21 @@ export default function LoginForm() {
         >
           <label className={s.form__label}>
             Почта
-            <TextField
-              sx={{
-                "& ": { mt: 1, mb: 1 },
-              }}
+            <input
+              className={s.form__input_marginBottom}
               type="email"
               name="email"
               value={email}
-              size="small"
               onChange={handleChange}
             />
           </label>
 
           <label className={s.form__label}>
             Пароль
-            <TextField
-              sx={{
-                "& ": { mt: 1 },
-              }}
+            <input
+              className={s.form__input}
               type="password"
               name="password"
-              size="small"
               value={password}
               onChange={handleChange}
             />

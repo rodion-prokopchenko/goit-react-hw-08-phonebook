@@ -10,7 +10,7 @@ import {
   successUpdateNotification,
   errorUpdateNotification,
   errorSameNameNotification,
-} from "../Notify/Toastify";
+} from "../Toastify/Toastify";
 
 export default function ContactList({ filteredContacts, compairContacts }) {
   const [showModal, setShowModal] = useState(false);

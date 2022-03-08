@@ -1,10 +1,10 @@
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
 import s from "./RegisterForm.module.css";
-import { successRegisterNotification } from "../Notify/Toastify";
+import { successRegisterNotification } from "../Toastify/Toastify";
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -18,6 +18,20 @@ export default function RegisterPage() {
 
   const [isValidForm, setIsValidForm] = useState(false);
   const isFirstRender = useRef(true);
+
+  const elemLogin = document.querySelector("#login");
+  const elemName = document.querySelector("#name");
+
+  console.log(elemName);
+  // const elemCounter = elemLogin.nextElementSibling;
+  // const maxLength = elemLogin.maxLength;
+  // const updateCounter = (e) => {
+  //   const len = e ? e.target.value.length : 0;
+  //   elemCounter.textContent = `${len} / ${maxLength}`;
+  // };
+  // updateCounter();
+  // elemLogin.addEventListener("keyup", updateCounter);
+  // elemLogin.addEventListener("keydown", updateCounter);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -110,50 +124,48 @@ export default function RegisterPage() {
       <h1>Страница регистрации</h1>
 
       <form onSubmit={handleSubmit} className={s.form__box} autoComplete="off">
+        {/* NAME */}
         <label className={s.form__label}>
           {nameError ? (
             <div className={s.form__textError}>{nameError}</div>
           ) : null}
           Имя
-          <TextField
-            placeholder="Пример: Rodion/rod1234"
+          <input
+            placeholder="Ex: Rodion/rod123"
             onBlur={blurHandler}
             type="text"
             name="name"
-            size="small"
             value={name}
             onChange={handleChange}
-            sx={{
-              "& ": { mb: 1, mt: 1 },
-            }}
           />
-        </label>
-
+        </label>{" "}
+        <span id="name" className={s.w}>
+          {name.length}/6
+        </span>
+        {/* EMAIL */}
         <label className={s.form__label}>
           {emailError ? (
             <div className={s.form__textError}>{emailError}</div>
           ) : null}
           Почта
-          <TextField
-            placeholder="Пример: rod@mail.com"
+          <input
+            placeholder="Ex: rod@mail.com"
             onBlur={blurHandler}
             type="email"
             name="email"
             size="small"
             value={email}
+            id="login"
             onChange={handleChange}
-            sx={{
-              "& ": { mb: 1, mt: 1 },
-            }}
           />
         </label>
-
+        {/* PASSWORD */}
         <label className={s.form__label}>
           {passwordError ? (
             <div className={s.form__textError}>{passwordError}</div>
           ) : null}
           Пароль
-          <TextField
+          <input
             placeholder="Не меньше 7 символов"
             onBlur={blurHandler}
             type="password"
@@ -161,12 +173,11 @@ export default function RegisterPage() {
             size="small"
             value={password}
             onChange={handleChange}
-            sx={{
-              "& ": { mt: 1 },
-            }}
           />
         </label>
-
+        <span id="name" className={s.w}>
+          {name.length}/7
+        </span>
         <Button
           type="submit"
           variant="contained"

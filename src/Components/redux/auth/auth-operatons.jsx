@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   errorLoginNotification,
   errorRegisterNotification,
-} from "../../Notify/Toastify";
+} from "../../Toastify/Toastify";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
 

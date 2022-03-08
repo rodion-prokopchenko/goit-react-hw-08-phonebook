@@ -31,8 +31,8 @@ const contactsSlice = createSlice({
     [contactOperations.addContact.fulfilled](state, action) {
       {
         action.payload
-          ? state.contacts.unshift(action.payload)
-          : state.contacts.unshift(action.meta.arg);
+          ? state.contacts.push(action.payload)
+          : state.contacts.push(action.meta.arg);
       }
       state.isFetching = "done";
 

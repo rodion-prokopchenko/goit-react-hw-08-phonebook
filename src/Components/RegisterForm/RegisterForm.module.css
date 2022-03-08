@@ -3,6 +3,12 @@
   flex-direction: column;
   align-items: center;
 }
+.form__label:nth-child(3) {
+  margin-top: 6px;
+}
+.form__label:nth-last-child(3) {
+  margin-top: 18px;
+}
 
 .form__box {
   display: flex;
@@ -11,4 +17,11 @@
 }
 .form__textError {
   color: red;
+}
+.w {
+  position: relative;
+  top: 4px;
+  left: 78px;
+  color: rgb(170, 169, 169);
+  font-size: 13px;
 }

@@ -1,6 +1,6 @@
 .contactList {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: flex-start;
   padding-inline-start: 0px;
 }

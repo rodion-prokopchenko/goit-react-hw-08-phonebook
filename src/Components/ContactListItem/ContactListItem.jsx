@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import contactOperations from "../redux/contacts/contact-actions";
 import contactSelectors from "../redux/contacts/contact-selectors";
 
+import PhoneLogo from "../Images/PhoneLogo";
+import AvatarLogo from "../Images/AvatarLogo";
 import { toast } from "react-toastify";
 import s from "./ContactListItem.module.css";
 import Button from "@mui/material/Button";
@@ -9,7 +11,7 @@ import {
   errorDeletedNotification,
   successReturnNotification,
   errorReturnNotification,
-} from "../Notify/Toastify";
+} from "../Toastify/Toastify";
 import { useRef } from "react";
 
 export default function ContactListItem({ id, name, number, toggleModal }) {
@@ -85,13 +87,11 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
         }}
       >
         <div className={s.contactList__form_information}>
-          <svg width="24px" height="18px">
-            <use href="../Images/avatar.svg"></use>
-          </svg>
+          <AvatarLogo />
           <span>{name}</span>
-          <svg width="24px" height="18px">
-            <use href="../Images/phone.svg"></use>
-          </svg>
+        </div>
+        <div className={s.contactList__form_information}>
+          <PhoneLogo />
           <span>{number}</span>
         </div>
         <div className={s.contactList__form_button}>
@@ -101,9 +101,6 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
             size="small"
             id="delete"
             className={s.contactList__button}
-            sx={{
-              "& ": { mr: 1, ml: 1 },
-            }}
           >
             Delete
           </Button>

@@ -8,7 +8,7 @@ const successLoginNotification = (user) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -20,7 +20,7 @@ const errorLoginNotification = (error) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -33,7 +33,7 @@ const successRegisterNotification = (user) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -45,21 +45,11 @@ const errorRegisterNotification = (error) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
 };
-
-// function a() {
-//   return (
-//     <>
-//       <div>
-//         <button>НАЖИМАЙ СЮДА</button>
-//       </div>
-//     </>
-//   );
-// }
 
 // ADD
 const successAddNotification = (contact) => {
@@ -68,7 +58,30 @@ const successAddNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
+    draggable: true,
+    progress: undefined,
+  });
+};
+const warningNameAddNotification = () => {
+  toast.warning(`Add name`, {
+    position: "top-right",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+
+    draggable: true,
+    progress: undefined,
+  });
+};
+
+const warningNumberAddNotification = () => {
+  toast.warning(`Add number`, {
+    position: "top-right",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -80,7 +93,7 @@ const errorAddNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -93,7 +106,7 @@ const errorSameNameNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -106,7 +119,7 @@ const errorDeletedNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -118,7 +131,7 @@ const successDeletedNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -131,7 +144,7 @@ const successReturnNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -143,7 +156,7 @@ const errorReturnNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -156,7 +169,7 @@ const successUpdateNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -168,7 +181,7 @@ const errorUpdateNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
   });
@@ -182,6 +195,8 @@ export {
   errorRegisterNotification,
   successRegisterNotification,
   successAddNotification,
+  warningNameAddNotification,
+  warningNumberAddNotification,
   errorSameNameNotification,
   errorAddNotification,
   errorDeletedNotification,
