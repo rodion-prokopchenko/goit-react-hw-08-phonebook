@@ -13,13 +13,10 @@ import authSelectors from "./Components/redux/auth/auth-selectors";
 import { RotatingLines } from "react-loader-spinner";
 import { ToastContainer } from "react-toastify";
 
-import Aaaa from "./Components/A/Aaaaa";
-
 export default function App() {
   const dispatch = useDispatch();
 
   const loadingCurrentUser = useSelector(authSelectors.getIsLoadingCurrentUser);
-  console.log(loadingCurrentUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -50,7 +47,6 @@ export default function App() {
                 }
               >
                 <Route path="/contact" element={<ContactPage />}></Route>
-                <Route path="/a" element={<Aaaa />}></Route>
               </Route>
               <Route element={<PublicRoute restricted />}>
                 <Route path="/login" element={<LoginForm />}></Route>

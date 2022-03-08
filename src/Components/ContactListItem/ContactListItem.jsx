@@ -84,8 +84,17 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
           }
         }}
       >
-        <div className={s.contactList__form}>
-          <span>{name}</span>:<span>{number}</span>
+        <div className={s.contactList__form_information}>
+          <svg width="24px" height="18px">
+            <use href="../Images/avatar.svg"></use>
+          </svg>
+          <span>{name}</span>
+          <svg width="24px" height="18px">
+            <use href="../Images/phone.svg"></use>
+          </svg>
+          <span>{number}</span>
+        </div>
+        <div className={s.contactList__form_button}>
           <Button
             variant="contained"
             type="button"

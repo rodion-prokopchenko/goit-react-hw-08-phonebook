@@ -1,7 +1,7 @@
 import authSelectors from "../redux/auth/auth-selectors";
 import { useSelector, useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 
@@ -9,9 +9,12 @@ import s from "./UserMenu.module.css";
 
 export default function UserMenu() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const userEmail = useSelector(authSelectors.getEmail);
-  const [showContacts, setShowContacts] = useState(null);
+  const [showContacts, setShowContacts] = useState(
+    location.pathname === "/contact" ? false : true
+  );
 
   function changeShowContacts() {
     setShowContacts(!showContacts);

@@ -1,0 +1,22 @@
+<svg >
+  <symbol version="1.1" id="avatar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" xml:space="preserve" viewBox="0 0 16 16">
+    <path d="M12,9H8H4c-2.209,0-4,1.791-4,4v3h16v-3C16,10.791,14.209,9,12,9z"></path>
+    <path d="M12,5V4c0-2.209-1.791-4-4-4S4,1.791,4,4v1c0,2.209,1.791,4,4,4S12,7.209,12,5z"></path>
+  </symbol>
+  <symbol version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 13 22" id="phone">
+    <title>phone_iphone</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icons" stroke="none" stroke-width="1" fill="#1976d2" fill-rule="evenodd">
+      <g id="Outlined" transform="translate(-717.000000, -2503.000000)">
+        <g id="Hardware" transform="translate(100.000000, 2404.000000)">
+          <g id="Outlined-/-Hardware-/-phone_iphone" transform="translate(612.000000, 98.000000)">
+            <g>
+              <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+              <path d="M15.5,1 L7.5,1 C6.12,1 5,2.12 5,3.5 L5,20.5 C5,21.88 6.12,23 7.5,23 L15.5,23 C16.88,23 18,21.88 18,20.5 L18,3.5 C18,2.12 16.88,1 15.5,1 Z M11.5,22 C10.67,22 10,21.33 10,20.5 C10,19.67 10.67,19 11.5,19 C12.33,19 13,19.67 13,20.5 C13,21.33 12.33,22 11.5,22 Z M16,18 L7,18 L7,4 L16,4 L16,18 Z" id="🔹-Icon-Color" fill="#1976d2"></path>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </symbol>
+</svg>
