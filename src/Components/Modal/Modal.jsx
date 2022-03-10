@@ -53,7 +53,7 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
           </label>
           {/* <button>Показать прошлое имя</button> */}
           <input
-            className={s.form__input}
+            className={s.form__input_name}
             id="updateNameInput"
             type="text"
             name="name"
@@ -66,6 +66,7 @@ export default function ModalWindow({ onClose, contact, upd, onCloseForKey }) {
             Number
           </label>
           <input
+            className={s.form__input_number}
             id="updateNumberInput"
             type="tel"
             name="number"

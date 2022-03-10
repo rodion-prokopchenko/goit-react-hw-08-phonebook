@@ -22,8 +22,13 @@
   border: 4px solid #3471e2;
   border-radius: 0px 8px 0px 0px;
 }
-.form__input {
+.form__input_name {
+  margin-top: 0;
   margin-bottom: 20px;
+}
+.form__input_number {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .form__button {
