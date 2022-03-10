@@ -82,7 +82,8 @@ export default function ContactForm({ compairContacts }) {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           onInput={onChange}
           value={name}
-          placeholder="empty"
+          placeholder="⠀"
+          maxLength="21"
         />
         <label htmlFor={"nameInput"} className={s.form__label_name}>
           Name
@@ -96,7 +97,8 @@ export default function ContactForm({ compairContacts }) {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           onInput={onChange}
           value={number}
-          placeholder="empty"
+          placeholder="⠀"
+          maxLength="14"
         />
         <label htmlFor={"numberInput"} className={s.form__label_number}>
           Number
