@@ -19,7 +19,6 @@ export default function RegisterPage() {
   const [isValidForm, setIsValidForm] = useState(false);
   const isFirstRender = useRef(true);
 
-  const elemLogin = document.querySelector("#login");
   const elemName = document.querySelector("#name");
 
   console.log(elemName);
@@ -121,7 +120,7 @@ export default function RegisterPage() {
 
   return (
     <div>
-      <h1>Страница регистрации</h1>
+      <h1 className={s.form__text}>Страница регистрации</h1>
 
       <form onSubmit={handleSubmit} className={s.form__box} autoComplete="off">
         {/* NAME */}

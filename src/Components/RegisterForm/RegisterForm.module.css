@@ -18,6 +18,10 @@
 .form__textError {
   color: red;
 }
+
+.form__text {
+  margin-top: 7px;
+}
 .w {
   position: relative;
   top: 4px;

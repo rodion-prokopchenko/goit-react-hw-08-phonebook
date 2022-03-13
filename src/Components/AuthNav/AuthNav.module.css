@@ -1,22 +1,16 @@
 .authNavigation {
   display: flex;
 
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .authNavigation__link {
   font-size: 200%;
-  color: #1976d2;
+  color: rgb(156, 156, 156);
   list-style: none;
   text-decoration: none;
-}
-.authNavigation__link:not(:last-child) {
-  margin-right: 15px;
 }
 
-.active {
-  background-color: #1976d2;
-  color: white;
-  list-style: none;
-  text-decoration: none;
+.authNavigation__link:hover {
+  border-bottom: 1px solid black;
 }

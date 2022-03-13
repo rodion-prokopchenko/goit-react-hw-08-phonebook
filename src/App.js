@@ -1,6 +1,6 @@
 import s from "./App.module.css";
 import AppBar from "./Components/AppBar/AppBar";
-import { useEffect, Suspense } from "react";
+import { useEffect } from "react";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import { Route, Routes } from "react-router-dom";
 import LoginForm from "./Components/LoginForm/LoginForm";
