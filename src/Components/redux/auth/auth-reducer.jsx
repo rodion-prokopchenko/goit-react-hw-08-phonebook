@@ -5,13 +5,19 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isLoading: true,
+  isLoadingCurrentUser: false,
+  isLoginningUser: false,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   extraReducers: {
+    // OFF LOADING(as login.rejected doesn't work)
+    [authOperations.changeLoadingUser](state, _) {
+      state.isLoginningUser = false;
+    },
+
     // REGISTER
     [authOperations.register.fulfilled](state, action) {
       console.log(`action in FF: `, action);
@@ -20,42 +26,45 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       console.log("Успешно зарегистрировались");
     },
-    [authOperations.register.pending](_, action) {
+    [authOperations.register.pending](state, _) {
       console.log("регистрация");
+      state.isLoading = true;
     },
-    [authOperations.register.rejected](state, action) {
-      console.log("что-то не так");
+    [authOperations.register.rejected](state, _) {
+      state.isLoading = false;
     },
 
     // LOGIN
     [authOperations.logIn.fulfilled](state, action) {
+      console.log("FF a : ", action);
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.isLoginningUser = false;
     },
     [authOperations.logIn.pending](state, action) {
-      console.log("Заходим...");
+      state.isLoginningUser = true;
     },
-    [authOperations.logIn.rejected](state, action) {
-      console.log("что-то не так");
+    // REJECTED DOESN'T WORK.
+    [authOperations.logIn.rejected](state, _) {
+      state.isLoginningUser = false;
     },
 
     // LOGOUT
-    [authOperations.logOut.fulfilled](state, action) {
+    [authOperations.logOut.fulfilled](state, _) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
-      console.log("Успешно вышли");
     },
-    [authOperations.logOut.pending](state, action) {
-      console.log("Выходим...");
+    [authOperations.logOut.pending](state, _) {
+      state.isLoading = true;
     },
-    [authOperations.logOut.rejected](state, action) {
-      console.log("что-то не так");
+    [authOperations.logOut.rejected](state, _) {
+      state.isLoading = false;
     },
 
     // FETCHCURRENTUSER
-    [authOperations.fetchCurrentUser.pending](state, action) {
+    [authOperations.fetchCurrentUser.pending](state, _) {
       state.isLoading = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
@@ -63,7 +72,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isLoading = false;
     },
-    [authOperations.fetchCurrentUser.rejected](state, action) {
+    [authOperations.fetchCurrentUser.rejected](state, _) {
       state.isLoading = false;
     },
   },

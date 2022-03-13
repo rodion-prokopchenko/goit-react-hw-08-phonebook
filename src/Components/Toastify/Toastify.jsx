@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import s from "./Toastify.module.css";
 
 // LOGIN
 const successLoginNotification = (user) => {
@@ -10,19 +11,31 @@ const successLoginNotification = (user) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
-const errorLoginNotification = (error) => {
-  toast.error(`${error.message}`, {
-    position: "top-right",
+const ErrorLoginPasswordNotification = () => {
+  toast.warning(`Password cannot be less than    6 characters`, {
+    position: "top-center",
+    width: "700px",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    className: s.toastify,
+
+    draggable: true,
+  });
+};
+
+const errorLoginNotification = () => {
+  toast.error("Incorrect login or password", {
+    position: "top-center",
+    className: s.toastify,
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -35,7 +48,6 @@ const successRegisterNotification = (user) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -47,7 +59,6 @@ const errorRegisterNotification = (error) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -60,7 +71,6 @@ const successAddNotification = (contact) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 const warningNameAddNotification = () => {
@@ -71,7 +81,6 @@ const warningNameAddNotification = () => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -83,7 +92,6 @@ const warningNumberAddNotification = () => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -95,7 +103,6 @@ const errorAddNotification = (contact) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -105,10 +112,8 @@ const errorSameNameNotification = (contact) => {
     position: "top-right",
     autoClose: 2500,
     hideProgressBar: false,
-    closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -121,7 +126,6 @@ const errorDeletedNotification = (contact) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -133,7 +137,6 @@ const successDeletedNotification = (contact) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -146,7 +149,6 @@ const successReturnNotification = (contact) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -158,7 +160,6 @@ const errorReturnNotification = (contact) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -171,7 +172,6 @@ const successUpdateNotification = (contact) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -183,7 +183,6 @@ const errorUpdateNotification = (contact) => {
     closeOnClick: true,
 
     draggable: true,
-    progress: undefined,
   });
 };
 
@@ -203,4 +202,5 @@ export {
   successDeletedNotification,
   successUpdateNotification,
   errorUpdateNotification,
+  ErrorLoginPasswordNotification,
 };

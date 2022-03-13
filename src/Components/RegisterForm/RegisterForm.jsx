@@ -31,7 +31,7 @@ export default function RegisterPage() {
   // };
   // updateCounter();
   // elemLogin.addEventListener("keyup", updateCounter);
-  // elemLogin.addEventListener("keydown", updateCounter);
+  // elemLogin.addEventListener("keydown", updateCounter);=
 
   useEffect(() => {
     if (isFirstRender.current) {

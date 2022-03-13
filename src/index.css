@@ -4,7 +4,7 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #282c34e8; */
+  background-color: rgba(255, 255, 255, 0.91);
 }
 
 code {
@@ -16,14 +16,19 @@ li {
 }
 
 input {
+  box-sizing: border-box;
+  padding: 10px 15px 10px 15px;
+
   margin-top: 10px;
-  height: 2rem;
+  height: calc(2rem + 22px);
   border-radius: 7px;
 
   outline: none;
   outline-offset: 0;
   box-shadow: 0px 0px 6px 1px #c5dcf3;
-  font-size: 1rem;
+  font-size: 1.2rem;
+
+  border-color: #c5dcf3;
 }
 
 input:hover {

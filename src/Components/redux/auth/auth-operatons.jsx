@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import {
   errorLoginNotification,
   errorRegisterNotification,
@@ -16,6 +16,8 @@ const token = {
     axios.defaults.headers.Authorization = "";
   },
 };
+// OFF LOADING(as login.rejected doesn't work)
+const changeLoadingUser = createAction("loadingUser/change");
 
 // REGISTER
 const register = createAsyncThunk("auth/register", async (credentials) => {
@@ -39,7 +41,10 @@ const logIn = createAsyncThunk("auth/login", async (credentials) => {
     token.set(data.token);
     return data;
   } catch (error) {
-    errorLoginNotification(error);
+    // errorLoginNotification(error);
+    console.log(error);
+
+    return;
   }
 });
 
@@ -79,5 +84,6 @@ const authOperations = {
   logOut,
   logIn,
   fetchCurrentUser,
+  changeLoadingUser,
 };
 export default authOperations;

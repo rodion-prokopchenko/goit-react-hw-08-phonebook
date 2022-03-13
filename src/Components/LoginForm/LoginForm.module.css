@@ -12,5 +12,11 @@
   text-align: center;
 }
 .form__input_marginBottom {
+  text-align: center;
+
   margin-bottom: 10px;
+}
+
+.form__text {
+  text-align: center;
 }
