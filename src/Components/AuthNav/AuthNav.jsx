@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 import s from "./AuthNav.module.css";
+import ArrowLogo from "../Images/ArrowLogo";
 
 export default function AuthNav() {
   const location = useLocation();
@@ -16,6 +17,9 @@ export default function AuthNav() {
             Регистрация
           </NavLink>
         )}
+        <div className={s.authNavigation__logo}>
+          <ArrowLogo />
+        </div>
       </div>
     </>
   );
