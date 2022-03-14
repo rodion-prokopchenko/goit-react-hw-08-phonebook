@@ -12,6 +12,8 @@ import authOperations from "./Components/redux/auth/auth-operatons";
 import authSelectors from "./Components/redux/auth/auth-selectors";
 import { RotatingLines } from "react-loader-spinner";
 import { ToastContainer } from "react-toastify";
+import UserMenu from "./Components/UserMenu/UserMenu";
+import AuthNav from "./Components/AuthNav/AuthNav";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -39,18 +41,12 @@ export default function App() {
 
           <div className={s.app}>
             <Routes>
-              <Route
-                element={
-                  <>
-                    <PrivateRoute redirectTo="/" />
-                  </>
-                }
-              >
-                <Route path="/contact" element={<ContactPage />}></Route>
+              <Route element={<PrivateRoute redirectTo="/login" />}>
+                <Route path="/contact" element={<ContactPage />} />
               </Route>
               <Route element={<PublicRoute restricted />}>
-                <Route path="/login" element={<LoginForm />}></Route>
-                <Route path="/register" element={<RegisterPage />}></Route>
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/register" element={<RegisterPage />} />
               </Route>
             </Routes>
             <ToastContainer
