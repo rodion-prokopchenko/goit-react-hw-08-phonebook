@@ -1,4 +1,4 @@
-import { Route, Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import authSelectors from "../redux/auth/auth-selectors";
 

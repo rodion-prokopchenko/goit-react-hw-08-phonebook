@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
 import s from "./RegisterForm.module.css";
-import { successRegisterNotification } from "../Toastify/Toastify";
+import {
+  successRegisterNotification,
+  warningRegisterNameNotification,
+  warningRegisterPasswordNotification,
+  warningRegisterEmailNotification,
+} from "../Toastify/Toastify";
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -18,19 +23,6 @@ export default function RegisterPage() {
 
   const [isValidForm, setIsValidForm] = useState(false);
   const isFirstRender = useRef(true);
-
-  const elemName = document.querySelector("#name");
-
-  console.log(elemName);
-  // const elemCounter = elemLogin.nextElementSibling;
-  // const maxLength = elemLogin.maxLength;
-  // const updateCounter = (e) => {
-  //   const len = e ? e.target.value.length : 0;
-  //   elemCounter.textContent = `${len} / ${maxLength}`;
-  // };
-  // updateCounter();
-  // elemLogin.addEventListener("keyup", updateCounter);
-  // elemLogin.addEventListener("keydown", updateCounter);=
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -46,31 +38,37 @@ export default function RegisterPage() {
 
   const nameValidation = (e) => {
     if (e.target.value.length === 0) {
-      return setNameError("Имя не может быть пустым");
+      setNameError(false);
+      return;
     }
     if (e.target.value.length < 6) {
-      return setNameError("Имя должно иметь минимум 6 символов");
+      setNameError(false);
+      return warningRegisterNameNotification();
     }
     setNameError(null);
   };
 
   const passwordValidation = (e) => {
     if (e.target.value.length === 0) {
-      return setPasswordError("Пароль не может быть пустым");
+      setPasswordError(false);
+      return;
     }
     if (e.target.value.length < 7) {
-      return setPasswordError("Пароль должен быть минимум 7 символов");
+      setPasswordError(false);
+      return warningRegisterPasswordNotification();
     }
     setPasswordError(null);
   };
 
   const emailValidation = (e) => {
     if (e.target.value.length === 0) {
-      return setEmailError("Емейл не может быть пустым");
+      setEmailError(false);
+      return;
     }
     const v = /.+@.+\..+/i;
     if (!v.test(String(e.target.value).toLocaleLowerCase())) {
-      return setEmailError("Некорректный емейл");
+      setEmailError(false);
+      return warningRegisterEmailNotification();
     }
     setEmailError(null);
   };
@@ -91,14 +89,22 @@ export default function RegisterPage() {
     }
   };
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
+  const handleChange = (e) => {
+    switch (e.target.name) {
       case "name":
-        return setName(value);
+        setName(e.target.value);
+        if (e.target.value.length >= 6) {
+          nameValidation(e);
+        }
+        return;
       case "email":
-        return setEmail(value);
+        return setEmail(e.target.value);
       case "password":
-        return setPassword(value);
+        setPassword(e.target.value);
+        if (e.target.value.length >= 7) {
+          passwordValidation(e);
+        }
+        return;
       default:
         return;
     }
@@ -119,8 +125,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h1 className={s.form__text}>Страница регистрации</h1>
+    <div className={s.form}>
+      <h1 className={s.form__text}>Регистрации</h1>
 
       <form onSubmit={handleSubmit} className={s.form__box} autoComplete="off">
         {/* NAME */}
@@ -130,7 +136,7 @@ export default function RegisterPage() {
           ) : null}
           Имя
           <input
-            placeholder="Ex: Rodion/rod123"
+            className={s.form__input}
             onBlur={blurHandler}
             type="text"
             name="name"
@@ -148,7 +154,7 @@ export default function RegisterPage() {
           ) : null}
           Почта
           <input
-            placeholder="Ex: rod@mail.com"
+            className={s.form__input}
             onBlur={blurHandler}
             type="email"
             name="email"
@@ -165,7 +171,7 @@ export default function RegisterPage() {
           ) : null}
           Пароль
           <input
-            placeholder="Не меньше 7 символов"
+            className={s.form__input}
             onBlur={blurHandler}
             type="password"
             name="password"
@@ -175,7 +181,7 @@ export default function RegisterPage() {
           />
         </label>
         <span id="name" className={s.w}>
-          {name.length}/7
+          {password.length}/7
         </span>
         <Button
           type="submit"

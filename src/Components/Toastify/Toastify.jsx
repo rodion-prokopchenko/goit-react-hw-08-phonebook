@@ -51,6 +51,40 @@ const successRegisterNotification = (user) => {
   });
 };
 
+const warningRegisterNameNotification = () => {
+  toast.warn("Name input needs to be minimum of 6 symbols", {
+    className: s.toastify,
+    position: "top-center",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+
+    draggable: true,
+  });
+};
+const warningRegisterEmailNotification = () => {
+  toast.warn("Incorrect email", {
+    className: s.toastify,
+    position: "top-center",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+
+    draggable: true,
+  });
+};
+const warningRegisterPasswordNotification = () => {
+  toast.warn("Password input needs to be minimum of 6 symbols", {
+    className: s.toastify,
+    position: "top-center",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+
+    draggable: true,
+  });
+};
+
 const errorRegisterNotification = (error) => {
   toast.error(`${error.message}`, {
     position: "top-right",
@@ -193,6 +227,9 @@ export {
   errorLoginNotification,
   errorRegisterNotification,
   successRegisterNotification,
+  warningRegisterNameNotification,
+  warningRegisterEmailNotification,
+  warningRegisterPasswordNotification,
   successAddNotification,
   warningNameAddNotification,
   warningNumberAddNotification,

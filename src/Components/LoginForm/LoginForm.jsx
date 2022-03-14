@@ -14,7 +14,6 @@ import { RotatingLines } from "react-loader-spinner";
 export default function LoginForm() {
   const dispatch = useDispatch();
   const isLoginningUser = useSelector(authSelectors.getLoginningUser);
-  console.log(isLoginningUser);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,8 +52,7 @@ export default function LoginForm() {
   return (
     <>
       <div>
-        <h1 className={s.form__text}>Страница логина</h1>
-
+        <h1 className={s.form__text}>Логин</h1>
         <form
           onSubmit={handleSubmit}
           autoComplete="off"

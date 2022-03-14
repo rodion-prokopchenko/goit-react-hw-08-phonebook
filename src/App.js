@@ -42,7 +42,7 @@ export default function App() {
               <Route
                 element={
                   <>
-                    <PrivateRoute redirectTo="/login" />
+                    <PrivateRoute redirectTo="/" />
                   </>
                 }
               >
