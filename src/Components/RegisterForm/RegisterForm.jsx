@@ -21,6 +21,17 @@ export default function RegisterPage() {
 
   const elemName = document.querySelector("#name");
 
+  console.log(elemName);
+  // const elemCounter = elemLogin.nextElementSibling;
+  // const maxLength = elemLogin.maxLength;
+  // const updateCounter = (e) => {
+  //   const len = e ? e.target.value.length : 0;
+  //   elemCounter.textContent = `${len} / ${maxLength}`;
+  // };
+  // updateCounter();
+  // elemLogin.addEventListener("keyup", updateCounter);
+  // elemLogin.addEventListener("keydown", updateCounter);=
+
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -111,66 +122,60 @@ export default function RegisterPage() {
     <div>
       <h1 className={s.form__text}>Страница регистрации</h1>
 
-      <form onSubmit={handleSubmit} className={s.form} autoComplete="off">
+      <form onSubmit={handleSubmit} className={s.form__box} autoComplete="off">
         {/* NAME */}
-
-        <input
-          className={s.form__input_name}
-          placeholder=" "
-          type="text"
-          name="name"
-          value={name}
-          onBlur={blurHandler}
-          onChange={handleChange}
-        />
-        <label className={s.form__label_name}>
-          {/* {nameError ? (
-            <div className={s.form__text_Error}>{nameError}</div>
-          ) : null} */}
+        <label className={s.form__label}>
+          {nameError ? (
+            <div className={s.form__textError}>{nameError}</div>
+          ) : null}
           Имя
-        </label>
+          <input
+            placeholder="Ex: Rodion/rod123"
+            onBlur={blurHandler}
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+          />
+        </label>{" "}
         <span id="name" className={s.w}>
           {name.length}/6
         </span>
         {/* EMAIL */}
-
-        <input
-          className={s.form__input_email}
-          placeholder=" "
-          onBlur={blurHandler}
-          type="email"
-          name="email"
-          size="small"
-          value={email}
-          id="login"
-          onChange={handleChange}
-        />
-        <label className={s.form__label_email}>
-          {/* {emailError ? (
-            <div className={s.form__text_Error}>{emailError}</div>
-          ) : null} */}
+        <label className={s.form__label}>
+          {emailError ? (
+            <div className={s.form__textError}>{emailError}</div>
+          ) : null}
           Почта
+          <input
+            placeholder="Ex: rod@mail.com"
+            onBlur={blurHandler}
+            type="email"
+            name="email"
+            size="small"
+            value={email}
+            id="login"
+            onChange={handleChange}
+          />
         </label>
         {/* PASSWORD */}
-
-        <input
-          className={s.form__input_password}
-          placeholder=" "
-          onBlur={blurHandler}
-          type="password"
-          name="password"
-          size="small"
-          value={password}
-          onChange={handleChange}
-        />
-        <label className={s.form__label_password}>
-          {/* {passwordError ? (
-            <div className={s.form__text_Error}>{passwordError}</div>
-          ) : null} */}
+        <label className={s.form__label}>
+          {passwordError ? (
+            <div className={s.form__textError}>{passwordError}</div>
+          ) : null}
           Пароль
+          <input
+            placeholder="Не меньше 7 символов"
+            onBlur={blurHandler}
+            type="password"
+            name="password"
+            size="small"
+            value={password}
+            onChange={handleChange}
+          />
         </label>
         <span id="name" className={s.w}>
-          {password.length}/7
+          {name.length}/7
         </span>
         <Button
           type="submit"

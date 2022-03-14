@@ -15,6 +15,8 @@ const AvatarLogo = () => {
         y="0px"
         viewBox="0 0 16 16"
         fill="#1976d2"
+        // style="enable-background:new 0 0 16 16;"
+        // xml:space="preserve"
       >
         <path d="M12,9H8H4c-2.209,0-4,1.791-4,4v3h16v-3C16,10.791,14.209,9,12,9z" />
 
