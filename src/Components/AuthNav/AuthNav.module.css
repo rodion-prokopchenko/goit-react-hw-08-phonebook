@@ -10,7 +10,13 @@
   list-style: none;
   text-decoration: none;
 }
+.authNavigation__logo {
+  display: none;
+  position: absolute;
+  transform: rotate(90deg);
+  top: 35px;
+}
 
-.authNavigation__link:hover {
-  border-bottom: 1px solid black;
+.authNavigation__link:hover ~ .authNavigation__logo {
+  display: block;
 }
