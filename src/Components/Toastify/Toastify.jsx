@@ -85,13 +85,13 @@ const warningRegisterPasswordNotification = () => {
   });
 };
 
-const errorRegisterNotification = (error) => {
-  toast.error(`${error.message}`, {
+const errorRegisterNotification = () => {
+  toast.error("This email is already taken", {
     position: "top-right",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -103,7 +103,7 @@ const successAddNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -113,7 +113,7 @@ const warningNameAddNotification = () => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -124,7 +124,7 @@ const warningNumberAddNotification = () => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -135,7 +135,7 @@ const errorAddNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -146,7 +146,7 @@ const errorSameNameNotification = (contact) => {
     position: "top-right",
     autoClose: 2500,
     hideProgressBar: false,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -158,7 +158,7 @@ const errorDeletedNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -169,7 +169,7 @@ const successDeletedNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -181,7 +181,7 @@ const successReturnNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -192,7 +192,7 @@ const errorReturnNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -204,7 +204,7 @@ const successUpdateNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };
@@ -215,7 +215,7 @@ const errorUpdateNotification = (contact) => {
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
-
+    className: s.toastify,
     draggable: true,
   });
 };

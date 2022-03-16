@@ -7,15 +7,20 @@ import authSelectors from "../redux/auth/auth-selectors";
 
 export default function AuthNav() {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
+  useEffect(() => {
+    if (location.pathname === "/" && isLoggedIn === false) {
+      navigate("/login");
+    }
+  }, [location.pathname]);
   return (
     <>
       <div className={s.authNavigation}>
         {location.pathname === "/" ? (
           <>
-            {" "}
+            {}
             <NavLink to="/login" className={s.authNavigation__link}>
               Логин
             </NavLink>{" "}

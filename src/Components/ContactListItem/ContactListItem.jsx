@@ -47,11 +47,20 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
     };
 
     return (
-      <div>
-        <h3>
+      <div className={s.contactList__undo_block}>
+        <h3 className={s.contactList__undo_text}>
           The contact "{name}" has been deleted <br />
-          <button onClick={handleClick}>Cancel</button>
         </h3>
+        <Button
+          onClick={handleClick}
+          type="button"
+          variant="contained"
+          sx={{
+            "& ": { width: "15ch" },
+          }}
+        >
+          Cancel
+        </Button>
       </div>
     );
   };
