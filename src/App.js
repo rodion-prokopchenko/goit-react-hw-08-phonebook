@@ -12,8 +12,6 @@ import authOperations from "./Components/redux/auth/auth-operatons";
 import authSelectors from "./Components/redux/auth/auth-selectors";
 import { RotatingLines } from "react-loader-spinner";
 import { ToastContainer } from "react-toastify";
-import UserMenu from "./Components/UserMenu/UserMenu";
-import AuthNav from "./Components/AuthNav/AuthNav";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -55,6 +53,7 @@ export default function App() {
               newestOnTop={true}
               closeOnClick={false}
               pauseOnFocusLoss={false}
+              position="top-left"
             />
           </div>
         </>

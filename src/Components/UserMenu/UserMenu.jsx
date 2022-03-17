@@ -3,11 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import authOperations from "../redux/auth/auth-operatons";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import Button from "@mui/material/Button";
+import { useMediaQuery } from "react-responsive";
+import ExitLogo from "../Images/ExitLogo";
 
 import s from "./UserMenu.module.css";
 
 export default function UserMenu() {
+  // RESPONSIVE
+  const isLess768 = useMediaQuery({ query: "(max-width: 768px)" });
+
+  // CODE
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -41,18 +46,27 @@ export default function UserMenu() {
   return (
     <>
       <div className={s.userMenu}>
-        {showContacts ? showContactsPage() : hiddenContactsPage()}
+        <div className={s.userMenu_block}>
+          <h2 className={s.userMenu__text}>
+            Привет,
+            <br /> {userEmail ? userEmail : null}
+          </h2>
 
-        <h2>Привет, {userEmail ? userEmail : null}</h2>
+          {showContacts ? showContactsPage() : hiddenContactsPage()}
+        </div>
 
-        <Button
-          className={s.userMenu__button}
-          variant="contained"
-          type="button"
-          onClick={() => dispatch(authOperations.logOut())}
-        >
-          Logout
-        </Button>
+        {!isLess768 ? (
+          <button
+            variant="contained"
+            type="button"
+            onClick={() => dispatch(authOperations.logOut())}
+            className={s.userMenu__button}
+          >
+            LOGOUT
+          </button>
+        ) : (
+          <ExitLogo exit={() => dispatch(authOperations.logOut())} />
+        )}
       </div>
     </>
   );

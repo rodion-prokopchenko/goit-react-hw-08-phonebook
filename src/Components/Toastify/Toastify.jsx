@@ -5,10 +5,11 @@ import s from "./Toastify.module.css";
 // LOGIN
 const successLoginNotification = (user) => {
   toast.success(`User "${user}" has been logined`, {
-    position: "top-right",
+    position: "top-center",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
+    className: s.toastify,
 
     draggable: true,
   });
@@ -42,7 +43,7 @@ const errorLoginNotification = () => {
 // REGISTER
 const successRegisterNotification = (user) => {
   toast.success(`User "${user}" has been registered`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -87,7 +88,7 @@ const warningRegisterPasswordNotification = () => {
 
 const errorRegisterNotification = () => {
   toast.error("This email is already taken", {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -99,7 +100,7 @@ const errorRegisterNotification = () => {
 // ADD
 const successAddNotification = (contact) => {
   toast.success(`Contact "${contact}" has been added`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -109,7 +110,7 @@ const successAddNotification = (contact) => {
 };
 const warningNameAddNotification = () => {
   toast.warning(`Add name`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -120,7 +121,7 @@ const warningNameAddNotification = () => {
 
 const warningNumberAddNotification = () => {
   toast.warning(`Add number`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -131,7 +132,7 @@ const warningNumberAddNotification = () => {
 
 const errorAddNotification = (contact) => {
   toast.error(`Contact "${contact}" hasn't been added`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -143,7 +144,7 @@ const errorAddNotification = (contact) => {
 // ADD && UPDATE
 const errorSameNameNotification = (contact) => {
   toast.error(`Contact "${contact}" is already presented/added in contacts`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     className: s.toastify,
@@ -154,7 +155,7 @@ const errorSameNameNotification = (contact) => {
 // DELETE
 const errorDeletedNotification = (contact) => {
   toast.error(`Contact "${contact}" hasn't been deleted`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -165,7 +166,7 @@ const errorDeletedNotification = (contact) => {
 
 const successDeletedNotification = (contact) => {
   toast.success(`Contact "${contact}" has been deleted`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -177,18 +178,19 @@ const successDeletedNotification = (contact) => {
 // RETURN DELETED CONTACT
 const successReturnNotification = (contact) => {
   toast.success(`The deleted contact "${contact}" has been reterned`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     className: s.toastify,
     draggable: true,
+    width: 2100,
   });
 };
 
 const errorReturnNotification = (contact) => {
   toast.error(`The deleted contact "${contact}" has been reterned`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -200,7 +202,7 @@ const errorReturnNotification = (contact) => {
 // UPDATE
 const successUpdateNotification = (contact) => {
   toast.success(`Contact "${contact}" has been updated`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
@@ -211,7 +213,7 @@ const successUpdateNotification = (contact) => {
 
 const errorUpdateNotification = (contact) => {
   toast.error(`Contact "${contact}" hasn't been updated`, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,

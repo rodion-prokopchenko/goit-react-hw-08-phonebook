@@ -1,0 +1,15 @@
+.exitLogo {
+  position: absolute;
+  right: 5%;
+  top: 20px;
+
+  width: 25px;
+}
+@media screen and (max-width: 480px) {
+  .exitLogo {
+    width: 20px;
+  }
+}
+.exitLogo:hover {
+  fill: #1976d2;
+}

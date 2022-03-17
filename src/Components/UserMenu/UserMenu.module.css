@@ -7,11 +7,63 @@
   background-color: #c5dcf3;
 }
 
+@media screen and (max-width: 480px) {
+  .userMenu {
+    flex-direction: column-reverse;
+  }
+}
+.userMenu_block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .userMenu__button {
+  position: absolute;
   margin-bottom: 10px;
+
+  top: 25px;
+  right: 1.5%;
+
+  font-weight: 500;
+  width: 105px;
+  height: 35px;
+  font-family: Roboto;
+  border-radius: 5px;
+  border: none;
+  background-color: #1976d2;
+  color: white;
+}
+.userMenu__button:hover {
+  background-color: #1565c0;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+    0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 }
 .userMenu__link {
   color: #1976d2;
   list-style: none;
   text-decoration: none;
+}
+@media screen and (max-width: 480px) {
+  .userMenu__link {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  .userMenu__link {
+    font-size: 15px;
+  }
+}
+.userMenu__text {
+  text-align: center;
+  font-size: 24px;
+}
+@media screen and (max-width: 480px) {
+  .userMenu__text {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  .userMenu__text {
+    font-size: 20px;
+  }
 }

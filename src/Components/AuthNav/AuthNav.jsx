@@ -1,7 +1,7 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import s from "./AuthNav.module.css";
 import ArrowLogo from "../Images/ArrowLogo";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import authSelectors from "../redux/auth/auth-selectors";
 

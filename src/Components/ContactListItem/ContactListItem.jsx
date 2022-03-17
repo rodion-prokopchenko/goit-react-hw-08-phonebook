@@ -17,6 +17,7 @@ import { useRef } from "react";
 export default function ContactListItem({ id, name, number, toggleModal }) {
   const Contacts = useSelector(contactSelectors.getContacts);
   const toastId = useRef(null);
+  const dispatch = useDispatch();
 
   function cancelDelete(name, number, id) {
     const reternedContact = {
@@ -47,8 +48,8 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
     };
 
     return (
-      <div className={s.contactList__undo_block}>
-        <h3 className={s.contactList__undo_text}>
+      <div className={s.contactListItem__undo_block}>
+        <h3 className={s.contactListItem__undo_text}>
           The contact "{name}" has been deleted <br />
         </h3>
         <Button
@@ -69,8 +70,6 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
     toastId.current = toast.success(<Undo />);
   };
 
-  const dispatch = useDispatch();
-
   const onDeleteContact = (e) => {
     try {
       dispatch(contactOperations.deleteContact(e));
@@ -83,7 +82,7 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
   return (
     <>
       <li
-        className={s.contactList__item}
+        className={s.contactListItem__item}
         id={id}
         onClick={(e) => {
           if (e.target.nodeName !== "BUTTON") {
@@ -95,21 +94,21 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
           }
         }}
       >
-        <div className={s.contactList__form_information}>
+        <div className={s.contactListItem__form_information}>
           <AvatarLogo />
           <span>{name}</span>
         </div>
-        <div className={s.contactList__form_information}>
+        <div className={s.contactListItem__form_information}>
           <PhoneLogo />
           <span>{number}</span>
         </div>
-        <div className={s.contactList__form_button}>
+        <div className={s.contactListItem__form_button}>
           <Button
             variant="contained"
             type="button"
             size="small"
             id="delete"
-            className={s.contactList__button}
+            className={s.contactListItem__button}
           >
             Delete
           </Button>
@@ -118,7 +117,7 @@ export default function ContactListItem({ id, name, number, toggleModal }) {
             type="button"
             id="update"
             size="small"
-            className={s.contactList__button}
+            className={s.contactListItem__button}
             onClick={() => toggleModal(id)}
           >
             Update
