@@ -14,6 +14,7 @@ export default function ContactPage() {
   const contacts = useSelector(contactSelectors.getContacts);
   const isFetching = useSelector(contactSelectors.getFetching);
   const filter = useSelector(contactSelectors.getValueFilter);
+  const filterStore = getVisibleContacts(contacts);
 
   useEffect(() => dispatch(contactOperations.getContact()), [dispatch]);
 
@@ -25,7 +26,6 @@ export default function ContactPage() {
       name.toLowerCase().includes(normalizedFilter)
     );
   };
-  const filterStore = getVisibleContacts(contacts);
 
   function compairContacts(e) {
     if (contacts.length === 0) return;

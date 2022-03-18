@@ -15,9 +15,10 @@ import {
 import { useRef } from "react";
 
 export default function ContactListItem({ id, name, number, toggleModal }) {
+  const dispatch = useDispatch();
+
   const Contacts = useSelector(contactSelectors.getContacts);
   const toastId = useRef(null);
-  const dispatch = useDispatch();
 
   function cancelDelete(name, number, id) {
     const reternedContact = {

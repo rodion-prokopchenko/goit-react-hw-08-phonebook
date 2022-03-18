@@ -16,11 +16,12 @@ export default function ContactForm({ compairContacts }) {
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const isValidButton = name && number ? true : false;
+
   const reset = () => {
     setName("");
     setNumber("");
   };
-  const isValidButton = name && number ? true : false;
 
   const onSumbitButton = (e) => {
     e.preventDefault();

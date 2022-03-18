@@ -15,6 +15,7 @@ import {
 export default function ContactList({ filteredContacts, compairContacts }) {
   const [showModal, setShowModal] = useState(false);
   const [editCurrentContact, setEditCurrentContact] = useState(null);
+
   const Contacts = useSelector(contactSelectors.getContacts);
   const dispatch = useDispatch();
 

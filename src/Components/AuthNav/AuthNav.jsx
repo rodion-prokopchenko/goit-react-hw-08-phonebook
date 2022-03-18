@@ -20,7 +20,6 @@ export default function AuthNav() {
       <div className={s.authNavigation}>
         {location.pathname === "/" ? (
           <>
-            {}
             <NavLink to="/login" className={s.authNavigation__link}>
               Логин
             </NavLink>{" "}
