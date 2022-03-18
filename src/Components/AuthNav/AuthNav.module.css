@@ -5,16 +5,18 @@
 }
 
 .authNavigation__link {
-  font-size: 200%;
-  color: rgb(156, 156, 156);
   list-style: none;
   text-decoration: none;
+  font-size: 200%;
+  color: rgb(156, 156, 156);
 }
 .authNavigation__logo {
   display: none;
-  position: absolute;
-  transform: rotate(90deg);
   top: 35px;
+
+  position: absolute;
+
+  transform: rotate(90deg);
 }
 
 .authNavigation__link:hover ~ .authNavigation__logo {

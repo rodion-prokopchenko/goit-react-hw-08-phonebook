@@ -1,4 +1,4 @@
-import s from "./Logo.module.css";
+import s from "./AvatarPhoneLogo.module.css";
 
 const PhoneLogo = () => {
   return (

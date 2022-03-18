@@ -1,38 +1,36 @@
 .form {
   display: flex;
+  margin-top: 40px;
+  margin-bottom: 25px;
+
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
-
-  margin-bottom: 25px;
 }
 .form__input_name,
 .form__input_number {
   width: 270px;
+
   box-shadow: 0px 0px 10px 1px #c5dcf3;
 }
 
 .form__label_name {
   position: relative;
-
+  margin-bottom: 10px;
   top: -40px;
   left: -95px;
 
   color: grey;
-
   font-size: 1.2rem;
-  margin-bottom: 10px;
 }
 
 .form__label_number {
   position: relative;
-
+  margin-bottom: 10px;
   top: -40px;
   left: -85px;
 
   color: grey;
   font-size: 1.2rem;
-  margin-bottom: 10px;
 }
 
 .form__button {
@@ -50,22 +48,26 @@
 
 .form .form__input_name:focus ~ .form__label_name,
 .form .form__input_name:not(:placeholder-shown) ~ .form__label_name {
+  width: 70px;
+
+  text-align: center;
+
   transform: translateY(-110%) translateX(-5%) scale(0.75);
   background-color: white;
   color: #1976d2;
-  width: 70px;
-  text-align: center;
 
   border-radius: 5px;
   box-shadow: 0px 0px 10px 3px #c5dcf3;
 }
 .form .form__input_number:focus ~ .form__label_number,
 .form .form__input_number:not(:placeholder-shown) ~ .form__label_number {
+  width: 86px;
+
+  text-align: center;
+
   transform: translateY(-110%) translateX(-7%) scale(0.75);
   background-color: white;
   color: #1976d2;
-  width: 86px;
-  text-align: center;
 
   border-radius: 5px;
   box-shadow: 0px 0px 10px 3px #c5dcf3;

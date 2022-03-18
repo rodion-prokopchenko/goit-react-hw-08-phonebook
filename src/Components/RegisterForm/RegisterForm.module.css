@@ -1,15 +1,18 @@
 .form {
   display: flex;
+
   flex-direction: column;
   align-items: center;
 }
 .form__box {
   display: flex;
+
   flex-direction: column;
   align-items: center;
 }
 .form__label {
   display: flex;
+
   flex-direction: column;
   align-items: center;
 }
@@ -34,6 +37,7 @@
   position: relative;
   top: 4px;
   left: 78px;
+
   color: rgb(170, 169, 169);
   font-size: 13px;
 }

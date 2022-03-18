@@ -49,7 +49,7 @@ export default function App() {
             </Routes>
             <ToastContainer
               limit={4}
-              autoClose={333000}
+              autoClose={2500}
               newestOnTop={true}
               closeOnClick={false}
               pauseOnFocusLoss={false}
